@@ -1,5 +1,5 @@
 //
-//  HotelListTableViewController.h
+//  DatePickerViewController.h
 //  sead40_hw6
 //
 //  Created by Joao Paulo Galvao Alves on 9/8/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HotelListTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface DatePickerViewController : UIViewController
 
 @end

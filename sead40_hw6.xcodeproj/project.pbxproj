@@ -18,6 +18,10 @@
 		6CB428811B9E44AA00786ADD /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428801B9E44AA00786ADD /* Room.m */; };
 		6CB4288C1B9F525100786ADD /* HotelListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4288B1B9F525100786ADD /* HotelListTableViewController.m */; };
 		6CB4288F1B9F565000786ADD /* HotelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4288E1B9F565000786ADD /* HotelTableViewCell.m */; };
+		6CB428951B9F5D2600786ADD /* Guest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428941B9F5D2600786ADD /* Guest.m */; };
+		6CB4289B1B9F5D7D00786ADD /* Reservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4289A1B9F5D7D00786ADD /* Reservation.m */; };
+		6CB4289D1B9F7ECD00786ADD /* hotels.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CB4289C1B9F7ECD00786ADD /* hotels.json */; };
+		6CB428A01B9F822200786ADD /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4289F1B9F822200786ADD /* DatePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,13 @@
 		6CB4288B1B9F525100786ADD /* HotelListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelListTableViewController.m; sourceTree = "<group>"; };
 		6CB4288D1B9F565000786ADD /* HotelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelTableViewCell.h; sourceTree = "<group>"; };
 		6CB4288E1B9F565000786ADD /* HotelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelTableViewCell.m; sourceTree = "<group>"; };
+		6CB428931B9F5D2600786ADD /* Guest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guest.h; sourceTree = "<group>"; };
+		6CB428941B9F5D2600786ADD /* Guest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guest.m; sourceTree = "<group>"; };
+		6CB428991B9F5D7D00786ADD /* Reservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reservation.h; sourceTree = "<group>"; };
+		6CB4289A1B9F5D7D00786ADD /* Reservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reservation.m; sourceTree = "<group>"; };
+		6CB4289C1B9F7ECD00786ADD /* hotels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hotels.json; sourceTree = "<group>"; };
+		6CB4289E1B9F822200786ADD /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		6CB4289F1B9F822200786ADD /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +119,7 @@
 		6CB428471B9E295100786ADD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6CB4289C1B9F7ECD00786ADD /* hotels.json */,
 				6CB428481B9E295100786ADD /* Info.plist */,
 				6CB428491B9E295100786ADD /* main.m */,
 			);
@@ -140,6 +152,10 @@
 				6CB4287D1B9E44A900786ADD /* Hotel.m */,
 				6CB4288D1B9F565000786ADD /* HotelTableViewCell.h */,
 				6CB4288E1B9F565000786ADD /* HotelTableViewCell.m */,
+				6CB428931B9F5D2600786ADD /* Guest.h */,
+				6CB428941B9F5D2600786ADD /* Guest.m */,
+				6CB428991B9F5D7D00786ADD /* Reservation.h */,
+				6CB4289A1B9F5D7D00786ADD /* Reservation.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -159,6 +175,8 @@
 				6CB428521B9E295100786ADD /* ViewController.m */,
 				6CB4288A1B9F525100786ADD /* HotelListTableViewController.h */,
 				6CB4288B1B9F525100786ADD /* HotelListTableViewController.m */,
+				6CB4289E1B9F822200786ADD /* DatePickerViewController.h */,
+				6CB4289F1B9F822200786ADD /* DatePickerViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -243,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB4289D1B9F7ECD00786ADD /* hotels.json in Resources */,
 				6CB4285B1B9E295100786ADD /* LaunchScreen.xib in Resources */,
 				6CB428581B9E295100786ADD /* Images.xcassets in Resources */,
 			);
@@ -262,11 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB428A01B9F822200786ADD /* DatePickerViewController.m in Sources */,
 				6CB428811B9E44AA00786ADD /* Room.m in Sources */,
 				6CB4284D1B9E295100786ADD /* AppDelegate.m in Sources */,
 				6CB428501B9E295100786ADD /* sead40_hw6.xcdatamodeld in Sources */,
 				6CB428531B9E295100786ADD /* ViewController.m in Sources */,
 				6CB4288C1B9F525100786ADD /* HotelListTableViewController.m in Sources */,
+				6CB428951B9F5D2600786ADD /* Guest.m in Sources */,
+				6CB4289B1B9F5D7D00786ADD /* Reservation.m in Sources */,
 				6CB4287E1B9E44A900786ADD /* Hotel.m in Sources */,
 				6CB4288F1B9F565000786ADD /* HotelTableViewCell.m in Sources */,
 				6CB4284A1B9E295100786ADD /* main.m in Sources */,

@@ -9,39 +9,84 @@
 #import "HotelListTableViewController.h"
 #import "HotelTableViewCell.h"
 #import "Hotel.h"
+#import "AppDelegate.h"
 
-static NSString *CellIdentifier = @"CellIdentifier";
+//static NSString *CellIdentifier = @"CellIdentifier";
 
 @interface HotelListTableViewController ()
+
+@property(strong,nonatomic) NSArray *hotelsArray;
+@property(strong, nonatomic) UITableView *tableView;
+
 
 @end
 
 @implementation HotelListTableViewController
 
--(instancetype)initWithStyle:(UITableViewStyle)style{
+-(void)loadView{
   
-  self = [super initWithStyle:style];
-  if (self) {
-    // Custom initialization
-    self.title = @"Table View Controller";
-  }
+  UIView *rootView = [[UIView alloc]init];
+  UITableView *tableView = [[UITableView alloc]initWithFrame:rootView.frame style:UITableViewStylePlain];
   
-  return self;
+  self.tableView = tableView;
+  [tableView setTranslatesAutoresizingMaskIntoConstraints:false];
+  [rootView addSubview:tableView]; //check if there is method here
+  
+  NSDictionary *views = @{@"tableView" : tableView};
+  
+  NSArray *tableViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:0 metrics:nil views:views];
+  
+  [rootView addConstraints:tableViewVerticalConstraints];
+  
+  NSArray *tableViewHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views];
+  
+  [rootView addConstraints:tableViewHorizontalConstraints];
+  
+  self.view = rootView;
+  
 }
+
+//-(instancetype)initWithStyle:(UITableViewStyle)style{
+//  
+//  self = [super initWithStyle:style];
+//  if (self) {
+//    // Custom initialization
+//    self.title = @"Table View Controller";
+//  }
+//  
+//  return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
   
   //Create and place in a "scratch pad" - now save
   self.tableView.delegate = self;
+  self.tableView.dataSource = self;
   
-  [self.tableView registerClass:[HotelTableViewCell class] forCellReuseIdentifier:CellIdentifier];
+  
+  
+  [self.tableView registerClass:[HotelTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
+  
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  
+  NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+  
+  NSError *fetchError;
+  
+  self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
+  if (fetchError) {
+    NSLog(@"Error");
+  }
+  
+  [self.tableView reloadData];
   
 }
 
@@ -61,15 +106,19 @@ static NSString *CellIdentifier = @"CellIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 5;
+    return [self.hotelsArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
     
     // Configure the cell...
-    
+  
+  Hotel *hotel = self.hotelsArray[indexPath.row];
+  cell.textLabel.text = hotel.name;
+  
     return cell;
 }
 
