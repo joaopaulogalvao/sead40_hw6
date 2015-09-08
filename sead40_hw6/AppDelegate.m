@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "HotelListTableViewController.h"
 #import "Hotel.h"
 #import "Room.h"
 
@@ -25,7 +26,7 @@
   
   [self.window makeKeyAndVisible];
   
-  ViewController *rootView = [[ViewController alloc]init];
+  HotelListTableViewController *rootView = [[HotelListTableViewController alloc]init];
   
   self.window.rootViewController = rootView;
   
