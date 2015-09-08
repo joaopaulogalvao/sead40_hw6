@@ -72,6 +72,12 @@
   
   NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
   
+  //What do I want to fetch against?
+  //Name - Atribute you are filtering on
+  //%@(Wildcard) - Value
+  
+  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name MATCHES %@",@"Four Seasons"];
+  
   NSError *fetchError;
   
   self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
@@ -81,6 +87,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
+  
   
   if (fetchError) {
     NSLog(@"Error");
@@ -118,6 +126,7 @@
   
   Hotel *hotel = self.hotelsArray[indexPath.row];
   cell.textLabel.text = hotel.name;
+  
   
     return cell;
 }

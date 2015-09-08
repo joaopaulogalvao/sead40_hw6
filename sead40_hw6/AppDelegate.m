@@ -22,6 +22,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
   
+  NSCalendar *calender = [NSCalendar currentCalendar];
+  
+  NSDate *now = [NSDate date];
+  NSLog(@"%@",now);
+  
+  NSDate *later = [NSDate dateWithTimeIntervalSinceNow:30];
+  NSLog(@"later: %@",later);
+  
+  NSDateComponents *components = [calender components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:now];
+  
+  NSLog(@"year is: %ld",(long)components.year);
+  
   //Create and place in a "scratch pad" - now save
   Hotel *hotel1 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
   hotel1.name = @"Fancy States";

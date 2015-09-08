@@ -9,18 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NSManagedObject;
+@class Reservation;
 
 @interface Guest : NSManagedObject
 
-@property (nonatomic, retain) NSSet *reservations;
-@end
-
-@interface Guest (CoreDataGeneratedAccessors)
-
-- (void)addReservationsObject:(NSManagedObject *)value;
-- (void)removeReservationsObject:(NSManagedObject *)value;
-- (void)addReservations:(NSSet *)values;
-- (void)removeReservations:(NSSet *)values;
+@property (nonatomic, retain) NSString * lastName;
+@property (nonatomic, retain) NSString * firstName;
+@property (nonatomic, retain) Reservation *reservation;
 
 @end
