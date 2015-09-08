@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6CB4284A1B9E295100786ADD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428491B9E295100786ADD /* main.m */; };
+		6CB4284D1B9E295100786ADD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4284C1B9E295100786ADD /* AppDelegate.m */; };
+		6CB428501B9E295100786ADD /* sead40_hw6.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4284E1B9E295100786ADD /* sead40_hw6.xcdatamodeld */; };
+		6CB428531B9E295100786ADD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428521B9E295100786ADD /* ViewController.m */; };
+		6CB428581B9E295100786ADD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CB428571B9E295100786ADD /* Images.xcassets */; };
+		6CB4285B1B9E295100786ADD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CB428591B9E295100786ADD /* LaunchScreen.xib */; };
+		6CB428671B9E295100786ADD /* sead40_hw6Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428661B9E295100786ADD /* sead40_hw6Tests.m */; };
+		6CB4287E1B9E44A900786ADD /* Hotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB4287D1B9E44A900786ADD /* Hotel.m */; };
+		6CB428811B9E44AA00786ADD /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428801B9E44AA00786ADD /* Room.m */; };
+		6CB428841B9E47BE00786ADD /* HotelListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428831B9E47BE00786ADD /* HotelListViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6CB428611B9E295100786ADD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6CB4283C1B9E295100786ADD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CB428431B9E295100786ADD;
+			remoteInfo = sead40_hw6;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6CB428441B9E295100786ADD /* sead40_hw6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sead40_hw6.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CB428481B9E295100786ADD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CB428491B9E295100786ADD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6CB4284B1B9E295100786ADD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6CB4284C1B9E295100786ADD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6CB4284F1B9E295100786ADD /* sead40_hw6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = sead40_hw6.xcdatamodel; sourceTree = "<group>"; };
+		6CB428511B9E295100786ADD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6CB428521B9E295100786ADD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6CB428571B9E295100786ADD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6CB4285A1B9E295100786ADD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		6CB428601B9E295100786ADD /* sead40_hw6Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sead40_hw6Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CB428651B9E295100786ADD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CB428661B9E295100786ADD /* sead40_hw6Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sead40_hw6Tests.m; sourceTree = "<group>"; };
+		6CB4287C1B9E44A900786ADD /* Hotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hotel.h; sourceTree = "<group>"; };
+		6CB4287D1B9E44A900786ADD /* Hotel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hotel.m; sourceTree = "<group>"; };
+		6CB4287F1B9E44AA00786ADD /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		6CB428801B9E44AA00786ADD /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
+		6CB428821B9E47BE00786ADD /* HotelListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelListViewController.h; sourceTree = "<group>"; };
+		6CB428831B9E47BE00786ADD /* HotelListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelListViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6CB428411B9E295100786ADD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6CB4285D1B9E295100786ADD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6CB4283B1B9E295100786ADD = {
+			isa = PBXGroup;
+			children = (
+				6CB428461B9E295100786ADD /* sead40_hw6 */,
+				6CB428631B9E295100786ADD /* sead40_hw6Tests */,
+				6CB428451B9E295100786ADD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6CB428451B9E295100786ADD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6CB428441B9E295100786ADD /* sead40_hw6.app */,
+				6CB428601B9E295100786ADD /* sead40_hw6Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6CB428461B9E295100786ADD /* sead40_hw6 */ = {
+			isa = PBXGroup;
+			children = (
+				6CB4287F1B9E44AA00786ADD /* Room.h */,
+				6CB428801B9E44AA00786ADD /* Room.m */,
+				6CB4287C1B9E44A900786ADD /* Hotel.h */,
+				6CB4287D1B9E44A900786ADD /* Hotel.m */,
+				6CB4284B1B9E295100786ADD /* AppDelegate.h */,
+				6CB4284C1B9E295100786ADD /* AppDelegate.m */,
+				6CB428511B9E295100786ADD /* ViewController.h */,
+				6CB428521B9E295100786ADD /* ViewController.m */,
+				6CB428571B9E295100786ADD /* Images.xcassets */,
+				6CB428591B9E295100786ADD /* LaunchScreen.xib */,
+				6CB4284E1B9E295100786ADD /* sead40_hw6.xcdatamodeld */,
+				6CB428471B9E295100786ADD /* Supporting Files */,
+				6CB428821B9E47BE00786ADD /* HotelListViewController.h */,
+				6CB428831B9E47BE00786ADD /* HotelListViewController.m */,
+			);
+			path = sead40_hw6;
+			sourceTree = "<group>";
+		};
+		6CB428471B9E295100786ADD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6CB428481B9E295100786ADD /* Info.plist */,
+				6CB428491B9E295100786ADD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6CB428631B9E295100786ADD /* sead40_hw6Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6CB428661B9E295100786ADD /* sead40_hw6Tests.m */,
+				6CB428641B9E295100786ADD /* Supporting Files */,
+			);
+			path = sead40_hw6Tests;
+			sourceTree = "<group>";
+		};
+		6CB428641B9E295100786ADD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6CB428651B9E295100786ADD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6CB428431B9E295100786ADD /* sead40_hw6 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6CB4286A1B9E295100786ADD /* Build configuration list for PBXNativeTarget "sead40_hw6" */;
+			buildPhases = (
+				6CB428401B9E295100786ADD /* Sources */,
+				6CB428411B9E295100786ADD /* Frameworks */,
+				6CB428421B9E295100786ADD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sead40_hw6;
+			productName = sead40_hw6;
+			productReference = 6CB428441B9E295100786ADD /* sead40_hw6.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6CB4285F1B9E295100786ADD /* sead40_hw6Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6CB4286D1B9E295100786ADD /* Build configuration list for PBXNativeTarget "sead40_hw6Tests" */;
+			buildPhases = (
+				6CB4285C1B9E295100786ADD /* Sources */,
+				6CB4285D1B9E295100786ADD /* Frameworks */,
+				6CB4285E1B9E295100786ADD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6CB428621B9E295100786ADD /* PBXTargetDependency */,
+			);
+			name = sead40_hw6Tests;
+			productName = sead40_hw6Tests;
+			productReference = 6CB428601B9E295100786ADD /* sead40_hw6Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6CB4283C1B9E295100786ADD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = jalvestech;
+				TargetAttributes = {
+					6CB428431B9E295100786ADD = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					6CB4285F1B9E295100786ADD = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 6CB428431B9E295100786ADD;
+					};
+				};
+			};
+			buildConfigurationList = 6CB4283F1B9E295100786ADD /* Build configuration list for PBXProject "sead40_hw6" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6CB4283B1B9E295100786ADD;
+			productRefGroup = 6CB428451B9E295100786ADD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6CB428431B9E295100786ADD /* sead40_hw6 */,
+				6CB4285F1B9E295100786ADD /* sead40_hw6Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6CB428421B9E295100786ADD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CB4285B1B9E295100786ADD /* LaunchScreen.xib in Resources */,
+				6CB428581B9E295100786ADD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6CB4285E1B9E295100786ADD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6CB428401B9E295100786ADD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CB428811B9E44AA00786ADD /* Room.m in Sources */,
+				6CB4284D1B9E295100786ADD /* AppDelegate.m in Sources */,
+				6CB428841B9E47BE00786ADD /* HotelListViewController.m in Sources */,
+				6CB428501B9E295100786ADD /* sead40_hw6.xcdatamodeld in Sources */,
+				6CB428531B9E295100786ADD /* ViewController.m in Sources */,
+				6CB4287E1B9E44A900786ADD /* Hotel.m in Sources */,
+				6CB4284A1B9E295100786ADD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6CB4285C1B9E295100786ADD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CB428671B9E295100786ADD /* sead40_hw6Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6CB428621B9E295100786ADD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CB428431B9E295100786ADD /* sead40_hw6 */;
+			targetProxy = 6CB428611B9E295100786ADD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6CB428591B9E295100786ADD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CB4285A1B9E295100786ADD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6CB428681B9E295100786ADD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6CB428691B9E295100786ADD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6CB4286B1B9E295100786ADD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = sead40_hw6/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6CB4286C1B9E295100786ADD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = sead40_hw6/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6CB4286E1B9E295100786ADD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = sead40_hw6Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sead40_hw6.app/sead40_hw6";
+			};
+			name = Debug;
+		};
+		6CB4286F1B9E295100786ADD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = sead40_hw6Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sead40_hw6.app/sead40_hw6";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6CB4283F1B9E295100786ADD /* Build configuration list for PBXProject "sead40_hw6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CB428681B9E295100786ADD /* Debug */,
+				6CB428691B9E295100786ADD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6CB4286A1B9E295100786ADD /* Build configuration list for PBXNativeTarget "sead40_hw6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CB4286B1B9E295100786ADD /* Debug */,
+				6CB4286C1B9E295100786ADD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6CB4286D1B9E295100786ADD /* Build configuration list for PBXNativeTarget "sead40_hw6Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CB4286E1B9E295100786ADD /* Debug */,
+				6CB4286F1B9E295100786ADD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6CB4284E1B9E295100786ADD /* sead40_hw6.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6CB4284F1B9E295100786ADD /* sead40_hw6.xcdatamodel */,
+			);
+			currentVersion = 6CB4284F1B9E295100786ADD /* sead40_hw6.xcdatamodel */;
+			path = sead40_hw6.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6CB4283C1B9E295100786ADD /* Project object */;
+}
