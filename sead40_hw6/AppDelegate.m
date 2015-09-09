@@ -34,59 +34,20 @@
   
   NSLog(@"year is: %ld",(long)components.year);
   
-  //Create and place in a "scratch pad" - now save
-  Hotel *hotel1 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
-  hotel1.name = @"Fancy States";
-  hotel1.stars = @5;
   
-  Hotel *hotel2 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
-  hotel2.name = @"Solid Stay";
-  hotel2.stars = @5;
-  
-  Hotel *hotel3 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
-  hotel3.name = @"Decent Inn";
-  hotel3.stars = @5;
-  
-  Hotel *hotel4 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
-  hotel4.name = @"Okay Motel";
-  hotel4.stars = @5;
-  
-  
-  
-  NSError *saveError;
-  BOOL result = [self.managedObjectContext save:&saveError];
-  
-  if (!result) {
-    NSLog(@"%@",saveError.localizedDescription);
-    
-  }
-  
-  //Create rooms
-  Room *room1 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
-  room1.number = @1;
-  room1.hotel = hotel1; // Relationship set
-  
-  NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-  
-  NSError *fetchError;
-  
-  //Sync - like PFQuery
-  NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-  
-  NSLog(@"%lu",(unsigned long)results.count);
+  [self seedCoreDataIfNeeded]; // check its place
   
   self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
   
   [self.window makeKeyAndVisible];
   
-  [self seedCoreDataIfNeeded]; // check its place
+  HotelListTableViewController *hotelListViewController = [[HotelListTableViewController alloc]init];
   
-  HotelListTableViewController *rootView = [[HotelListTableViewController alloc]init];
-  
-  self.window.rootViewController = rootView;
+  self.window.rootViewController = hotelListViewController;
   
   return YES;
 }
+
 
 -(void)seedCoreDataIfNeeded {
   
@@ -97,17 +58,65 @@
   NSInteger count = [self.managedObjectContext countForFetchRequest:fetchRequest error:&fetchError];
   
   if (count == 0) {
-    //We need to see our database
+    //We need to seed our database
     NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"hotels" ofType:@"json"];
-    NSURL *jsonURL = [NSURL URLWithString:jsonPath];
+    //NSURL *jsonURL = [NSURL URLWithString:jsonPath];
     NSData *jsonData = [NSData dataWithContentsOfFile:jsonPath];
     
     NSError *jsonError;
+    
     NSDictionary *rootObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonError];
     
     if (jsonError) {
       return;
+      
+    } else {
+      
+      for (NSDictionary *hotelDict in rootObject) {
+        if ([hotelDict isEqual:@"Hotels"]) {
+          NSDictionary *hotels = [rootObject objectForKey:@"Hotels"];
+          for (NSDictionary *hotelsInfo in hotels) {
+            NSString *hotelName = [hotelsInfo objectForKey:@"name"];
+            
+            Hotel *hotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+            hotel.name = hotelName;
+          }
+        }
+      }
     }
+      
+      
+    
+    
+    //Create and place in a "scratch pad" - now save
+//    Hotel *hotel1 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+//    hotel1.name = @"Fancy States";
+//    hotel1.stars = @5;
+//    
+//    Hotel *hotel2 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+//    hotel2.name = @"Solid Stay";
+//    hotel2.stars = @5;
+//    
+//    Hotel *hotel3 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+//    hotel3.name = @"Decent Inn";
+//    hotel3.stars = @5;
+//    
+//    Hotel *hotel4 = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+//    hotel4.name = @"Okay Motel";
+//    hotel4.stars = @5;
+//    
+//    NSError *saveError;
+//    BOOL result = [self.managedObjectContext save:&saveError];
+//    
+//    if (!result) {
+//      NSLog(@"%@",saveError.localizedDescription);
+//      
+//    }
+//    
+//    //Create rooms
+//    Room *room1 = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
+//    room1.number = @1;
+//    room1.hotel = hotel1; // Relationship set
     
   }
   

@@ -24,7 +24,7 @@
         <relationship name="hotel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Hotel" inverseName="rooms" inverseEntity="Hotel" syncable="YES"/>
         <relationship name="reservations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Reservation" inverseName="room" inverseEntity="Reservation" syncable="YES"/>
     </entity>
-    <fetchRequest name="AllHotels" entity="Hotel" predicateString="stars &gt; 4 AND name BEGINSWITH &quot;F&quot;"/>
+    <fetchRequest name="AllHotels" entity="Hotel"/>
     <elements>
         <element name="Hotel" positionX="-315" positionY="-81" width="128" height="103"/>
         <element name="Room" positionX="-135" positionY="-100" width="128" height="118"/>

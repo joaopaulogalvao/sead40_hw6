@@ -22,6 +22,7 @@
 		6CB428AC1B9F921E00786ADD /* Reservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428AB1B9F921E00786ADD /* Reservation.m */; };
 		6CB428AF1B9F921F00786ADD /* Guest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428AE1B9F921F00786ADD /* Guest.m */; };
 		6CB428B21B9F921F00786ADD /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428B11B9F921F00786ADD /* Room.m */; };
+		6CB428B51B9F9BD000786ADD /* BookReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428B41B9F9BD000786ADD /* BookReservationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		6CB428AE1B9F921F00786ADD /* Guest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guest.m; sourceTree = "<group>"; };
 		6CB428B01B9F921F00786ADD /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
 		6CB428B11B9F921F00786ADD /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
+		6CB428B31B9F9BD000786ADD /* BookReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookReservationViewController.h; sourceTree = "<group>"; };
+		6CB428B41B9F9BD000786ADD /* BookReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookReservationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				6CB4288B1B9F525100786ADD /* HotelListTableViewController.m */,
 				6CB4289E1B9F822200786ADD /* DatePickerViewController.h */,
 				6CB4289F1B9F822200786ADD /* DatePickerViewController.m */,
+				6CB428B31B9F9BD000786ADD /* BookReservationViewController.h */,
+				6CB428B41B9F9BD000786ADD /* BookReservationViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			files = (
 				6CB428B21B9F921F00786ADD /* Room.m in Sources */,
 				6CB428A01B9F822200786ADD /* DatePickerViewController.m in Sources */,
+				6CB428B51B9F9BD000786ADD /* BookReservationViewController.m in Sources */,
 				6CB4284D1B9E295100786ADD /* AppDelegate.m in Sources */,
 				6CB428501B9E295100786ADD /* sead40_hw6.xcdatamodeld in Sources */,
 				6CB428AC1B9F921E00786ADD /* Reservation.m in Sources */,

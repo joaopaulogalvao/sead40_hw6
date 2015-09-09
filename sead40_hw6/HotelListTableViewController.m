@@ -74,9 +74,12 @@
   
   //What do I want to fetch against?
   //Name - Atribute you are filtering on
-  //%@(Wildcard) - Value
+  //MATCHES - Operator
+  //%@(Wildcard) - What you are trying to compare against - Value
+  //%K(substitute the value with the attribute) - values on your right will be in quotes
+  //%@ - should be on your right
   
-  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"name MATCHES %@",@"Four Seasons"];
+  fetchRequest.predicate = [NSPredicate predicateWithFormat:nil];
   
   NSError *fetchError;
   
@@ -87,7 +90,6 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  
   
   
   if (fetchError) {
@@ -114,7 +116,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return [self.hotelsArray count];
+  NSLog(@"%@",self.hotelsArray);
+    return self.hotelsArray.count;
 }
 
 
