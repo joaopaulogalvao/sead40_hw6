@@ -10,10 +10,12 @@
 #import "HotelTableViewCell.h"
 #import "Hotel.h"
 #import "AppDelegate.h"
+#import "RoomViewController.h"
 
 //static NSString *CellIdentifier = @"CellIdentifier";
 
-@interface HotelListTableViewController ()
+@interface HotelListTableViewController () <UITableViewDataSource, UITableViewDelegate>
+
 
 @property(strong,nonatomic) NSArray *hotelsArray;
 @property(strong, nonatomic) UITableView *tableView;
@@ -132,6 +134,20 @@
   
   
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+  RoomViewController *roomListView = [[RoomViewController alloc]init];
+  
+  [self.navigationController pushViewController:roomListView animated:true];
+  
+  [self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionNone];
+  
+//  [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+  
 }
 
 

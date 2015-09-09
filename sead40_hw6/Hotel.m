@@ -13,6 +13,7 @@
 @implementation Hotel
 
 @dynamic name;
+@dynamic location;
 @dynamic stars;
 @dynamic rooms;
 

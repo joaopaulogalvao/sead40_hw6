@@ -43,7 +43,9 @@
   
   HotelListTableViewController *hotelListViewController = [[HotelListTableViewController alloc]init];
   
-  self.window.rootViewController = hotelListViewController;
+  UINavigationController *hotelsNavigation = [[UINavigationController alloc]initWithRootViewController:hotelListViewController];
+  
+  self.window.rootViewController = hotelsNavigation;
   
   return YES;
 }
@@ -77,9 +79,15 @@
           NSDictionary *hotels = [rootObject objectForKey:@"Hotels"];
           for (NSDictionary *hotelsInfo in hotels) {
             NSString *hotelName = [hotelsInfo objectForKey:@"name"];
+            NSString *hotelLocation = [hotelsInfo objectForKey:@"location"];
+            NSNumber *hotelStars = [hotelsInfo objectForKey:@"stars"];
+            
             
             Hotel *hotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
             hotel.name = hotelName;
+            hotel.location = hotelLocation;
+            hotel.stars = hotelStars;
+            
           }
         }
       }
