@@ -7,10 +7,16 @@
 //
 
 #import "MenuViewController.h"
+#import "MenuTableViewCell.h"
 
 @interface MenuViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) UITableView *menuTableView;
+
+@property (strong, nonatomic) UITableViewCell *browseHotelsCell;
+@property (strong, nonatomic) UITableViewCell *bookAroomCell;
+@property (strong, nonatomic) UITableViewCell *lookUpReservationsCell;
+@property (strong, nonatomic) NSArray *tableData;
 
 @end
 
@@ -35,6 +41,12 @@
   
   [rootView addConstraints:tableViewHorizontalConstraints];
   
+  // construct menu cells, section 1, row 00
+  self.browseHotelsCell = [[UITableViewCell alloc]init];
+  self.browseHotelsCell.textLabel.text = @"Browse Hotels";
+  self.browseHotelsCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
+  self.browseHotelsCell.accessoryType = UITableViewCellAccessoryDetailButton;
+  
   self.view = rootView;
   
   
@@ -47,13 +59,41 @@
   self.menuTableView.delegate = self;
   self.menuTableView.dataSource = self;
   
+  [self.menuTableView registerClass:[MenuTableViewCell class] forCellReuseIdentifier:@"MenuCellIdentifier"];
   
+  self.tableData = [NSArray arrayWithObjects:@"Browse Hotels",@"Book a Room",@"Lookup reservations", nil];
   
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UITableViewDataSource
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+  
+  return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+  
+  return 3;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+  UITableViewCell *menuCell = [tableView dequeueReusableCellWithIdentifier:@"MenuCellIdentifier" forIndexPath:indexPath];
+  
+  menuCell.textLabel.text =  [self.tableData objectAtIndex:indexPath.row];
+  
+  return menuCell;
+}
+
+#pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+  
 }
 
 /*

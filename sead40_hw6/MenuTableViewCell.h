@@ -10,4 +10,6 @@
 
 @interface MenuTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) UILabel *titleLabel;
+
 @end

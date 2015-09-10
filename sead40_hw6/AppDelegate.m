@@ -44,8 +44,6 @@
   
   MenuViewController *menuTableViewController = [[MenuViewController alloc]init];
   
-  //HotelListTableViewController *hotelListViewController = [[HotelListTableViewController alloc]init];
-  
   UINavigationController *hotelsNavigation = [[UINavigationController alloc]initWithRootViewController:menuTableViewController];
   
   self.window.rootViewController = hotelsNavigation;

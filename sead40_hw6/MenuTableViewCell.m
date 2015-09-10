@@ -14,6 +14,27 @@
     // Initialization code
 }
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  
+  if (self) {
+    
+    self.titleLabel = [[UILabel alloc]init];
+    [self.titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.titleLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+    [self.titleLabel setNumberOfLines:1];
+    [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    [self.titleLabel setTextColor:[UIColor blackColor]];
+    [self.titleLabel setBackgroundColor:[UIColor clearColor]];
+    [self.contentView addSubview:self.titleLabel];
+    
+  }
+  
+  return self;
+  
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
