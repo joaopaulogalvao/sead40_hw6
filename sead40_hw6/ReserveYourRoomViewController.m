@@ -1,20 +1,18 @@
 //
-//  BookReservationViewController.m
+//  ReserveYourRoomViewController.m
 //  sead40_hw6
 //
-//  Created by Joao Paulo Galvao Alves on 9/8/15.
+//  Created by Joao Paulo Galvao Alves on 9/10/15.
 //  Copyright (c) 2015 jalvestech. All rights reserved.
 //
 
-#import "BookReservationViewController.h"
-#import "AppDelegate.h"
-#import "Reservation.h"
+#import "ReserveYourRoomViewController.h"
 
-@interface BookReservationViewController ()
+@interface ReserveYourRoomViewController ()
 
 @end
 
-@implementation BookReservationViewController
+@implementation ReserveYourRoomViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,13 +26,12 @@
 
 -(void) bookReservation {
   
-//  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-//  
-//  Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:appDelegate.managedObjectContext];
+  //  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  //
+  //  Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:appDelegate.managedObjectContext];
   
   
 }
-
 /*
 #pragma mark - Navigation
 
