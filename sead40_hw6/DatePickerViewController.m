@@ -61,14 +61,15 @@
   self.datePicker.datePickerMode = UIDatePickerModeDate;
   self.dateFormatter = [[NSDateFormatter alloc]init];
   
+  //Grab first loaded date // reference can't be nil
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
   [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
   NSString *dateString = [self.dateFormatter stringFromDate:self.datePicker.date];
   
   //Convert String to Date
   self.startDateFromString = [self.dateFormatter dateFromString:dateString];
-  NSLog(@"Date String:%@",dateString);
-  NSLog(@"Date: %@",self.startDateFromString);
+  NSLog(@"First Load Start Date String:%@",dateString);
+  NSLog(@"First Load Start converted Date: %@",self.startDateFromString);
   
 }
 
@@ -88,8 +89,8 @@
   
   //Convert String to Date
   self.startDateFromString = [self.dateFormatter dateFromString:dateString];
-  NSLog(@"Date String:%@",dateString);
-  NSLog(@"Date: %@",self.startDateFromString);
+  NSLog(@"Selected Start Date String:%@",dateString);
+  NSLog(@"Selected Start Date: %@",self.startDateFromString);
 }
 
 -(void)nextButtonPressed:(UIButton *)sender {

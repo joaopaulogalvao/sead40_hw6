@@ -13,8 +13,9 @@
 
 @property (strong,nonatomic) UIDatePicker *departureDatePicker;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
-@property (strong, nonatomic) NSMutableArray *departureDates;
+@property (strong, nonatomic) NSMutableArray *arrayOfReservationDates;
 @property (strong, nonatomic) NSDate *selectedDepartureDate;
+@property (strong, nonatomic) NSDate *departureDateFromString;
 
 
 @end
@@ -65,9 +66,24 @@
   self.dateFormatter = [[NSDateFormatter alloc]init];
   
   //Grab the arrival date reference
-  NSLog(@"Arrival date: %@",self.selectedStartDate);
+  NSLog(@"Reference Arrival date: %@",self.selectedStartDate);
   
   //Write a test
+  
+  //Grab first loaded departure date // reference can't be nil
+  //dateFormatter.dateStyle = NSDateFormatterShortStyle;
+  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
+  NSString *dateString = [self.dateFormatter stringFromDate:self.departureDatePicker.date];
+  
+  //Convert String to Date
+  self.departureDateFromString = [self.dateFormatter dateFromString:dateString];
+  NSLog(@"First Load Departure Date String:%@",dateString);
+  NSLog(@"First Load Departure Converted Date: %@",self.departureDateFromString);
+  
+  //If the user does not change the picker, store it
+  self.arrayOfReservationDates = [NSMutableArray arrayWithObjects:self.selectedStartDate,self.departureDateFromString, nil];
+  
+  NSLog(@"Array of reservation dates: %@",self.arrayOfReservationDates);
   
 }
 
@@ -83,7 +99,16 @@
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
   [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
   NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
-  NSLog(@"%@",dateString);
+  
+  //Convert String to Date
+  self.departureDateFromString = [self.dateFormatter dateFromString:dateString];
+  NSLog(@"Selected Departure Date String:%@",dateString);
+  NSLog(@"Selected Departure Date: %@",self.departureDateFromString);
+  
+  //If the user does not change the picker, store it
+  self.arrayOfReservationDates = [NSMutableArray arrayWithObjects:self.selectedStartDate,self.departureDateFromString, nil];
+  
+  NSLog(@"Array of reservation dates - departure value changed: %@",self.arrayOfReservationDates);
 }
 
 -(void)nextButtonPressed:(UIButton *)sender {
@@ -97,13 +122,6 @@
   
 }
 
-#pragma mark - UIPickerViewDelegate
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-  
-  self.selectedDepartureDate = [self.departureDates objectAtIndex:row];
-  NSLog(@"Selected Date: %@",[NSString stringWithFormat:@"%@",self.selectedDepartureDate]);
-  
-}
 
 /*
 #pragma mark - Navigation
