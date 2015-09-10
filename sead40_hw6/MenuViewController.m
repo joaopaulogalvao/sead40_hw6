@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 jalvestech. All rights reserved.
 //
 
+#import "HotelListTableViewController.h"
+#import "DatePickerViewController.h"
+#import "BookReservationViewController.h"
 #import "MenuViewController.h"
 #import "MenuTableViewCell.h"
 
@@ -13,9 +16,6 @@
 
 @property(strong, nonatomic) UITableView *menuTableView;
 
-@property (strong, nonatomic) UITableViewCell *browseHotelsCell;
-@property (strong, nonatomic) UITableViewCell *bookAroomCell;
-@property (strong, nonatomic) UITableViewCell *lookUpReservationsCell;
 @property (strong, nonatomic) NSArray *tableData;
 
 @end
@@ -40,12 +40,6 @@
   NSArray *tableViewHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views];
   
   [rootView addConstraints:tableViewHorizontalConstraints];
-  
-  // construct menu cells, section 1, row 00
-  self.browseHotelsCell = [[UITableViewCell alloc]init];
-  self.browseHotelsCell.textLabel.text = @"Browse Hotels";
-  self.browseHotelsCell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
-  self.browseHotelsCell.accessoryType = UITableViewCellAccessoryDetailButton;
   
   self.view = rootView;
   
@@ -93,6 +87,22 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+  HotelListTableViewController *hotelView = [[HotelListTableViewController alloc]init];
+  DatePickerViewController *dateView = [[DatePickerViewController alloc]init];
+  BookReservationViewController *bookingsView = [[BookReservationViewController alloc]init];
+  switch (indexPath.row) {
+    case 0:
+      [self.navigationController pushViewController:hotelView animated:true];
+      break;
+    case 1:
+      [self.navigationController pushViewController:dateView animated:true];
+      break;
+    case 2:
+      [self.navigationController pushViewController:bookingsView animated:true];
+    default:
+      break;
+  }
   
 }
 

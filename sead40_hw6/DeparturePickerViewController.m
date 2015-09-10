@@ -1,29 +1,29 @@
 //
-//  DatePickerViewController.m
+//  DeparturePickerViewController.m
 //  sead40_hw6
 //
-//  Created by Joao Paulo Galvao Alves on 9/8/15.
+//  Created by Joao Paulo Galvao Alves on 9/10/15.
 //  Copyright (c) 2015 jalvestech. All rights reserved.
 //
 
-#import "DatePickerViewController.h"
 #import "DeparturePickerViewController.h"
 
-@interface DatePickerViewController ()
+@interface DeparturePickerViewController ()
 
-@property (strong,nonatomic) UIDatePicker *datePicker;
+@property (strong,nonatomic) UIDatePicker *departureDatePicker;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
 
 @end
 
-@implementation DatePickerViewController
+@implementation DeparturePickerViewController
+
 
 -(void)loadView{
   UIView *rootView = [[UIView alloc]init];
   rootView.backgroundColor = [UIColor whiteColor];
   
   UIDatePicker *datePicker = [[UIDatePicker alloc]init];
-  self.datePicker = datePicker;
+  self.departureDatePicker = datePicker;
   
   [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
   
@@ -47,19 +47,20 @@
   
   self.view = rootView;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
   
   //Add view's title
-  self.title = @"Select Arrival Date";
+  self.title = @"Select Departure Date";
   
   //Add type
-  self.datePicker.datePickerMode = UIDatePickerModeDate;
+  self.departureDatePicker.datePickerMode = UIDatePickerModeDate;
   self.dateFormatter = [[NSDateFormatter alloc]init];
   
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -80,20 +81,19 @@
   
   NSLog(@"Next button clicked.");
   
-  //Pass the reference to departure...
+  //Pass both references to rooms and mark unavailable ones with something...
   
-  DeparturePickerViewController *departurePicker = [[DeparturePickerViewController alloc]init];
-  
-  [self.navigationController pushViewController:departurePicker animated:true];
   
 }
 
-#pragma mark - Navigation
 /*
+#pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
+
 @end

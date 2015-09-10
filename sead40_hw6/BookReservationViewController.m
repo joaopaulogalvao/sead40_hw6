@@ -28,9 +28,9 @@
 
 -(void) bookReservation {
   
-  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-  
-  Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:appDelegate.managedObjectContext];
+//  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+//  
+//  Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:appDelegate.managedObjectContext];
   
   
 }
