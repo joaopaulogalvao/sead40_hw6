@@ -8,15 +8,47 @@
 
 #import "MenuViewController.h"
 
-@interface MenuViewController ()
+@interface MenuViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+@property(strong, nonatomic) UITableView *menuTableView;
 
 @end
 
 @implementation MenuViewController
 
+-(void)loadView{
+  
+  UIView *rootView = [[UIView alloc]init];
+  UITableView *tableView = [[UITableView alloc]initWithFrame:rootView.frame style:UITableViewStyleGrouped];
+  
+  self.menuTableView = tableView;
+  [tableView setTranslatesAutoresizingMaskIntoConstraints:false];
+  [rootView addSubview:tableView]; //check if there is method here
+  
+  NSDictionary *views = @{@"tableView" : tableView};
+  
+  NSArray *tableViewVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:0 metrics:nil views:views];
+  
+  [rootView addConstraints:tableViewVerticalConstraints];
+  
+  NSArray *tableViewHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views];
+  
+  [rootView addConstraints:tableViewHorizontalConstraints];
+  
+  self.view = rootView;
+  
+  
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+  
+  self.menuTableView.delegate = self;
+  self.menuTableView.dataSource = self;
+  
+  
+  
 }
 
 - (void)didReceiveMemoryWarning {

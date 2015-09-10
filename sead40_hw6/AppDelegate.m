@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "HotelListTableViewController.h"
+#import "MenuViewController.h"
 #import "Hotel.h"
 #import "Room.h"
 
@@ -41,9 +42,11 @@
   
   [self.window makeKeyAndVisible];
   
-  HotelListTableViewController *hotelListViewController = [[HotelListTableViewController alloc]init];
+  MenuViewController *menuTableViewController = [[MenuViewController alloc]init];
   
-  UINavigationController *hotelsNavigation = [[UINavigationController alloc]initWithRootViewController:hotelListViewController];
+  //HotelListTableViewController *hotelListViewController = [[HotelListTableViewController alloc]init];
+  
+  UINavigationController *hotelsNavigation = [[UINavigationController alloc]initWithRootViewController:menuTableViewController];
   
   self.window.rootViewController = hotelsNavigation;
   
