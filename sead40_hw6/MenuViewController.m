@@ -55,7 +55,7 @@
   
   [self.menuTableView registerClass:[MenuTableViewCell class] forCellReuseIdentifier:@"MenuCellIdentifier"];
   
-  self.tableData = [NSArray arrayWithObjects:@"Browse Hotels",@"Book a Room",@"Lookup reservations", nil];
+  self.tableData = [NSArray arrayWithObjects:NSLocalizedString(@"Browse Hotels",nil),NSLocalizedString(@"Book a Room",nil),NSLocalizedString(@"Lookup reservations", nil),nil];
   
 }
 

@@ -13,6 +13,8 @@
 
 @property (strong,nonatomic) UIDatePicker *datePicker;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSMutableArray *startDates;
+@property (strong, nonatomic) NSDate *selectedStartDate;
 
 @end
 
@@ -32,7 +34,7 @@
   UIButton *nextButton = [[UIButton alloc]init];
   [nextButton addTarget:self action:@selector(nextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
   [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [nextButton setTitle:@"Next" forState:UIControlStateNormal];
+  [nextButton setTitle:NSLocalizedString(@"Next", nil)  forState:UIControlStateNormal];
   //Let me take control
   [nextButton setTranslatesAutoresizingMaskIntoConstraints:false];
   
@@ -52,7 +54,7 @@
     // Do any additional setup after loading the view.
   
   //Add view's title
-  self.title = @"Select Arrival Date";
+  self.title = NSLocalizedString(@"Select Arrival Date",nil);
   
   //Add type
   self.datePicker.datePickerMode = UIDatePickerModeDate;
@@ -71,7 +73,7 @@
 -(void)datePickerValueChanged:(UIDatePicker *)sender {
   
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
-  [self.dateFormatter setDateFormat:@"MMMM EEE yy"];
+  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
   NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
   NSLog(@"%@",dateString);
 }
@@ -87,6 +89,15 @@
   [self.navigationController pushViewController:departurePicker animated:true];
   
 }
+
+#pragma mark - UIPickerViewDelegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+  
+  self.selectedStartDate = [self.startDates objectAtIndex:row];
+  NSLog(@"Selected Date: %@",[NSString stringWithFormat:@"%@",self.selectedStartDate]);
+  
+}
+
 
 #pragma mark - Navigation
 /*

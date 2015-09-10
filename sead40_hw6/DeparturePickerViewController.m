@@ -32,7 +32,7 @@
   UIButton *nextButton = [[UIButton alloc]init];
   [nextButton addTarget:self action:@selector(nextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
   [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [nextButton setTitle:@"Next" forState:UIControlStateNormal];
+  [nextButton setTitle:NSLocalizedString(@"Next",nil) forState:UIControlStateNormal];
   //Let me take control
   [nextButton setTranslatesAutoresizingMaskIntoConstraints:false];
   
@@ -54,7 +54,7 @@
     // Do any additional setup after loading the view.
   
   //Add view's title
-  self.title = @"Select Departure Date";
+  self.title = NSLocalizedString(@"Select Departure Date",nil);
   
   //Add type
   self.departureDatePicker.datePickerMode = UIDatePickerModeDate;
@@ -72,7 +72,7 @@
 -(void)datePickerValueChanged:(UIDatePicker *)sender {
   
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
-  [self.dateFormatter setDateFormat:@"MMMM EEE yy"];
+  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
   NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
   NSLog(@"%@",dateString);
 }
