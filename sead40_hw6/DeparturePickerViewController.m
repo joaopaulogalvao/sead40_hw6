@@ -12,6 +12,9 @@
 
 @property (strong,nonatomic) UIDatePicker *departureDatePicker;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSMutableArray *departureDates;
+@property (strong, nonatomic) NSDate *selectedDepartureDate;
+
 
 @end
 
@@ -60,6 +63,9 @@
   self.departureDatePicker.datePickerMode = UIDatePickerModeDate;
   self.dateFormatter = [[NSDateFormatter alloc]init];
   
+  //Grab the arrival date reference
+  NSLog(@"Arrival date: %@",self.selectedStartDate);
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +89,14 @@
   
   //Pass both references to rooms and mark unavailable ones with something...
   
+  
+}
+
+#pragma mark - UIPickerViewDelegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+  
+  self.selectedDepartureDate = [self.departureDates objectAtIndex:row];
+  NSLog(@"Selected Date: %@",[NSString stringWithFormat:@"%@",self.selectedDepartureDate]);
   
 }
 

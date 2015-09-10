@@ -15,6 +15,7 @@
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSMutableArray *startDates;
 @property (strong, nonatomic) NSDate *selectedStartDate;
+@property (strong, nonatomic) NSDate *startDateFromString;
 
 @end
 
@@ -75,7 +76,11 @@
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
   [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
   NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
-  NSLog(@"%@",dateString);
+  
+  //Convert String to Date
+  self.startDateFromString = [self.dateFormatter dateFromString:dateString];
+  NSLog(@"Date String:%@",dateString);
+  NSLog(@"Date: %@",self.startDateFromString);
 }
 
 -(void)nextButtonPressed:(UIButton *)sender {
@@ -85,6 +90,8 @@
   //Pass the reference to departure...
   
   DeparturePickerViewController *departurePicker = [[DeparturePickerViewController alloc]init];
+  
+  departurePicker.selectedStartDate = self.startDateFromString;
   
   [self.navigationController pushViewController:departurePicker animated:true];
   

@@ -10,4 +10,6 @@
 
 @interface DeparturePickerViewController : UIViewController
 
+@property(strong, nonatomic)NSDate *selectedStartDate;
+
 @end
