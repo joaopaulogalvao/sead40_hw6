@@ -8,7 +8,7 @@
 
 #import "HotelListTableViewController.h"
 #import "DatePickerViewController.h"
-#import "BookReservationViewController.h"
+#import "LookUpReservationViewController.h"
 #import "MenuViewController.h"
 #import "MenuTableViewCell.h"
 
@@ -90,7 +90,7 @@
   
   HotelListTableViewController *hotelView = [[HotelListTableViewController alloc]init];
   DatePickerViewController *dateView = [[DatePickerViewController alloc]init];
-  BookReservationViewController *bookingsView = [[BookReservationViewController alloc]init];
+  LookUpReservationViewController *lookUpView = [[LookUpReservationViewController alloc]init];
   switch (indexPath.row) {
     case 0:
       [self.navigationController pushViewController:hotelView animated:true];
@@ -99,7 +99,7 @@
       [self.navigationController pushViewController:dateView animated:true];
       break;
     case 2:
-      [self.navigationController pushViewController:bookingsView animated:true];
+      [self.navigationController pushViewController:lookUpView animated:true];
     default:
       break;
   }

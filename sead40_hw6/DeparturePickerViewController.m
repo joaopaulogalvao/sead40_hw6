@@ -7,6 +7,7 @@
 //
 
 #import "DeparturePickerViewController.h"
+#import "ReserveYourRoomViewController.h"
 
 @interface DeparturePickerViewController ()
 
@@ -66,6 +67,8 @@
   //Grab the arrival date reference
   NSLog(@"Arrival date: %@",self.selectedStartDate);
   
+  //Write a test
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +91,9 @@
   NSLog(@"Next button clicked.");
   
   //Pass both references to rooms and mark unavailable ones with something...
+  ReserveYourRoomViewController *reserveYourRoomView = [[ReserveYourRoomViewController alloc]init];
   
+  [self.navigationController pushViewController:reserveYourRoomView animated:true];
   
 }
 

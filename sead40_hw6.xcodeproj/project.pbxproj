@@ -29,6 +29,7 @@
 		6CB428D01BA2079C00786ADD /* DeparturePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428CF1BA2079C00786ADD /* DeparturePickerViewController.m */; };
 		6CB428D81BA21FFC00786ADD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CB428DA1BA21FFC00786ADD /* Localizable.strings */; };
 		6CB428E21BA23E3700786ADD /* ReserveYourRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428E11BA23E3700786ADD /* ReserveYourRoomViewController.m */; };
+		6CB428E51BA240F100786ADD /* LookUpReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428E41BA240F100786ADD /* LookUpReservationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		6CB428D91BA21FFC00786ADD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CB428E01BA23E3700786ADD /* ReserveYourRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveYourRoomViewController.h; sourceTree = "<group>"; };
 		6CB428E11BA23E3700786ADD /* ReserveYourRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveYourRoomViewController.m; sourceTree = "<group>"; };
+		6CB428E31BA240F100786ADD /* LookUpReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookUpReservationViewController.h; sourceTree = "<group>"; };
+		6CB428E41BA240F100786ADD /* LookUpReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookUpReservationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 				6CB428CF1BA2079C00786ADD /* DeparturePickerViewController.m */,
 				6CB428E01BA23E3700786ADD /* ReserveYourRoomViewController.h */,
 				6CB428E11BA23E3700786ADD /* ReserveYourRoomViewController.m */,
+				6CB428E31BA240F100786ADD /* LookUpReservationViewController.h */,
+				6CB428E41BA240F100786ADD /* LookUpReservationViewController.m */,
 				6CB428B91BA0D14400786ADD /* CoreDataStack.h */,
 				6CB428BA1BA0D14400786ADD /* CoreDataStack.m */,
 			);
@@ -331,6 +336,7 @@
 				6CB428BB1BA0D14400786ADD /* CoreDataStack.m in Sources */,
 				6CB428B81BA0939700786ADD /* RoomViewController.m in Sources */,
 				6CB4288F1B9F565000786ADD /* HotelTableViewCell.m in Sources */,
+				6CB428E51BA240F100786ADD /* LookUpReservationViewController.m in Sources */,
 				6CB428BE1BA116ED00786ADD /* Guest.m in Sources */,
 				6CB4284A1B9E295100786ADD /* main.m in Sources */,
 			);

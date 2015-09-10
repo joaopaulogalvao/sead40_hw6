@@ -61,6 +61,15 @@
   self.datePicker.datePickerMode = UIDatePickerModeDate;
   self.dateFormatter = [[NSDateFormatter alloc]init];
   
+  //dateFormatter.dateStyle = NSDateFormatterShortStyle;
+  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
+  NSString *dateString = [self.dateFormatter stringFromDate:self.datePicker.date];
+  
+  //Convert String to Date
+  self.startDateFromString = [self.dateFormatter dateFromString:dateString];
+  NSLog(@"Date String:%@",dateString);
+  NSLog(@"Date: %@",self.startDateFromString);
+  
 }
 
 
@@ -97,13 +106,6 @@
   
 }
 
-#pragma mark - UIPickerViewDelegate
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-  
-  self.selectedStartDate = [self.startDates objectAtIndex:row];
-  NSLog(@"Selected Date: %@",[NSString stringWithFormat:@"%@",self.selectedStartDate]);
-  
-}
 
 
 #pragma mark - Navigation
