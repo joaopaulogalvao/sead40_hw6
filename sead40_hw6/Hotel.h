@@ -2,7 +2,7 @@
 //  Hotel.h
 //  sead40_hw6
 //
-//  Created by Joao Paulo Galvao Alves on 9/7/15.
+//  Created by Joao Paulo Galvao Alves on 9/9/15.
 //  Copyright (c) 2015 jalvestech. All rights reserved.
 //
 
@@ -14,8 +14,8 @@
 @interface Hotel : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * stars;
+@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSSet *rooms;
 @end
 

@@ -74,23 +74,38 @@
       
     } else {
       
-      for (NSDictionary *hotelDict in rootObject) {
-        if ([hotelDict isEqual:@"Hotels"]) {
           NSDictionary *hotels = [rootObject objectForKey:@"Hotels"];
+          
+          //Loop thru hotels Dictionary
+
           for (NSDictionary *hotelsInfo in hotels) {
             NSString *hotelName = [hotelsInfo objectForKey:@"name"];
             NSString *hotelLocation = [hotelsInfo objectForKey:@"location"];
+            NSDictionary *hotelRoomNumber = [hotelsInfo objectForKey:@"rooms"];
             NSNumber *hotelStars = [hotelsInfo objectForKey:@"stars"];
             
+            //Create the Hotel object for entity Hotel
             
             Hotel *hotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
             hotel.name = hotelName;
             hotel.location = hotelLocation;
             hotel.stars = hotelStars;
             
+            //Access room Dictionary
+            
+            for (NSDictionary *roomsInfo in hotelRoomNumber) {
+              NSNumber *roomNumber = [roomsInfo objectForKey:@"number"];
+              
+              Room *room = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
+              room.number = roomNumber;
+              room.hotel = hotel;
+              NSLog(@"%@",roomNumber);
+            }
+ 
           }
-        }
-      }
+          
+      
+      
     }
       
       
