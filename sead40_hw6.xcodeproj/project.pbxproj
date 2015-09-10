@@ -25,6 +25,7 @@
 		6CB428C11BA116ED00786ADD /* Hotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428C01BA116ED00786ADD /* Hotel.m */; };
 		6CB428C41BA116ED00786ADD /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428C31BA116ED00786ADD /* Room.m */; };
 		6CB428C71BA116ED00786ADD /* Reservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428C61BA116ED00786ADD /* Reservation.m */; };
+		6CB428CA1BA1E5FD00786ADD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428C91BA1E5FD00786ADD /* MenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		6CB428C31BA116ED00786ADD /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
 		6CB428C51BA116ED00786ADD /* Reservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reservation.h; sourceTree = "<group>"; };
 		6CB428C61BA116ED00786ADD /* Reservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reservation.m; sourceTree = "<group>"; };
+		6CB428C81BA1E5FD00786ADD /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		6CB428C91BA1E5FD00786ADD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 			children = (
 				6CB428511B9E295100786ADD /* ViewController.h */,
 				6CB428521B9E295100786ADD /* ViewController.m */,
+				6CB428C81BA1E5FD00786ADD /* MenuViewController.h */,
+				6CB428C91BA1E5FD00786ADD /* MenuViewController.m */,
 				6CB4288A1B9F525100786ADD /* HotelListTableViewController.h */,
 				6CB4288B1B9F525100786ADD /* HotelListTableViewController.m */,
 				6CB428B61BA0939700786ADD /* RoomViewController.h */,
@@ -300,6 +305,7 @@
 				6CB428C41BA116ED00786ADD /* Room.m in Sources */,
 				6CB428A01B9F822200786ADD /* DatePickerViewController.m in Sources */,
 				6CB428B51B9F9BD000786ADD /* BookReservationViewController.m in Sources */,
+				6CB428CA1BA1E5FD00786ADD /* MenuViewController.m in Sources */,
 				6CB4284D1B9E295100786ADD /* AppDelegate.m in Sources */,
 				6CB428501B9E295100786ADD /* sead40_hw6.xcdatamodeld in Sources */,
 				6CB428531B9E295100786ADD /* ViewController.m in Sources */,

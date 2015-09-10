@@ -57,11 +57,11 @@
   [self.roomsTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
   
   self.roomsArray = [self.selectedHotel.rooms allObjects];
-  NSLog(@"%lu",(unsigned long)self.roomsArray.count);
+  NSLog(@"Number of rooms: %lu",(unsigned long)self.roomsArray.count);
   
   NSError *fetchError;
 
-  NSLog(@"rooms array: %@",self.selectedHotel);
+  
   
   if (fetchError) {
     NSLog(@"Error");
