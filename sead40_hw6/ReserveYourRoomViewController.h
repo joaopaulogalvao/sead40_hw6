@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ReserveYourRoomViewController : UIViewController
-
+@property (strong, nonatomic) NSDate *selectedStartDate;
+@property (strong, nonatomic) NSDate *selectedEndDate;
 @end

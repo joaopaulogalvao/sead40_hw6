@@ -30,7 +30,7 @@
   UIDatePicker *datePicker = [[UIDatePicker alloc]init];
   self.departureDatePicker = datePicker;
   
-  [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+  //[datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
   
   [rootView addSubview:datePicker];
   
@@ -70,20 +70,17 @@
   
   //Write a test
   
-  //Grab first loaded departure date // reference can't be nil
+  //Grab first loaded date // reference can't be nil
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
+  ReserveYourRoomViewController *departurePicker = [[ReserveYourRoomViewController alloc]init];
+  
   [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
-  NSString *dateString = [self.dateFormatter stringFromDate:self.departureDatePicker.date];
+  
+  departurePicker.selectedStartDate = self.departureDatePicker.date;
   
   //Convert String to Date
-  self.departureDateFromString = [self.dateFormatter dateFromString:dateString];
-  NSLog(@"First Load Departure Date String:%@",dateString);
-  NSLog(@"First Load Departure Converted Date: %@",self.departureDateFromString);
+  NSLog(@"First Load Departure Date: %@",self.departureDatePicker.date);
   
-  //If the user does not change the picker, store it
-  self.arrayOfReservationDates = [NSMutableArray arrayWithObjects:self.selectedStartDate,self.departureDateFromString, nil];
-  
-  NSLog(@"Array of reservation dates: %@",self.arrayOfReservationDates);
   
 }
 
@@ -94,29 +91,35 @@
 
 #pragma mark - My Actions
 
--(void)datePickerValueChanged:(UIDatePicker *)sender {
-  
-  //dateFormatter.dateStyle = NSDateFormatterShortStyle;
-  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
-  NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
-  
-  //Convert String to Date
-  self.departureDateFromString = [self.dateFormatter dateFromString:dateString];
-  NSLog(@"Selected Departure Date String:%@",dateString);
-  NSLog(@"Selected Departure Date: %@",self.departureDateFromString);
-  
-  //If the user does not change the picker, store it
-  self.arrayOfReservationDates = [NSMutableArray arrayWithObjects:self.selectedStartDate,self.departureDateFromString, nil];
-  
-  NSLog(@"Array of reservation dates - departure value changed: %@",self.arrayOfReservationDates);
-}
+//-(void)datePickerValueChanged:(UIDatePicker *)sender {
+//  
+//  //dateFormatter.dateStyle = NSDateFormatterShortStyle;
+//  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
+//  NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
+//  
+//  //Convert String to Date
+//  self.departureDateFromString = [self.dateFormatter dateFromString:dateString];
+//  NSLog(@"Selected Departure Date String:%@",dateString);
+//  NSLog(@"Selected Departure Date: %@",self.departureDateFromString);
+//  
+//  //If the user does not change the picker, store it
+//  self.arrayOfReservationDates = [NSMutableArray arrayWithObjects:self.selectedStartDate,self.departureDateFromString, nil];
+//  
+//  NSLog(@"Array of reservation dates - departure value changed: %@",self.arrayOfReservationDates);
+//}
 
 -(void)nextButtonPressed:(UIButton *)sender {
   
   NSLog(@"Next button clicked.");
   
+  
   //Pass both references to rooms and mark unavailable ones with something...
   ReserveYourRoomViewController *reserveYourRoomView = [[ReserveYourRoomViewController alloc]init];
+  reserveYourRoomView.selectedStartDate = self.selectedStartDate;
+  reserveYourRoomView.selectedEndDate = self.departureDatePicker.date;
+  
+  NSLog(@"Selected Start Date: %@",self.selectedStartDate);
+  NSLog(@"Selected Departure Date: %@",self.departureDatePicker.date);
   
   [self.navigationController pushViewController:reserveYourRoomView animated:true];
   

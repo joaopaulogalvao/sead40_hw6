@@ -28,7 +28,7 @@
   UIDatePicker *datePicker = [[UIDatePicker alloc]init];
   self.datePicker = datePicker;
   
-  [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+  //[datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
   
   [rootView addSubview:datePicker];
   
@@ -63,13 +63,14 @@
   
   //Grab first loaded date // reference can't be nil
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
+  DeparturePickerViewController *arrivalPicker = [[DeparturePickerViewController alloc]init];
+  
   [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
-  NSString *dateString = [self.dateFormatter stringFromDate:self.datePicker.date];
+  
+  arrivalPicker.selectedStartDate = self.datePicker.date;
   
   //Convert String to Date
-  self.startDateFromString = [self.dateFormatter dateFromString:dateString];
-  NSLog(@"First Load Start Date String:%@",dateString);
-  NSLog(@"First Load Start converted Date: %@",self.startDateFromString);
+  NSLog(@"First Load Start Date: %@",self.datePicker.date);
   
 }
 
@@ -81,17 +82,17 @@
 
 #pragma mark - My Actions
 
--(void)datePickerValueChanged:(UIDatePicker *)sender {
-  
-  //dateFormatter.dateStyle = NSDateFormatterShortStyle;
-  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
-  NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
-  
-  //Convert String to Date
-  self.startDateFromString = [self.dateFormatter dateFromString:dateString];
-  NSLog(@"Selected Start Date String:%@",dateString);
-  NSLog(@"Selected Start Date: %@",self.startDateFromString);
-}
+//-(void)datePickerValueChanged:(UIDatePicker *)sender {
+//  
+//  //dateFormatter.dateStyle = NSDateFormatterShortStyle;
+//  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
+//  NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
+//  
+//  //Convert String to Date
+//  self.startDateFromString = [self.dateFormatter dateFromString:dateString];
+//  NSLog(@"Selected Start Date String:%@",dateString);
+//  NSLog(@"Selected Start Date: %@",self.startDateFromString);
+//}
 
 -(void)nextButtonPressed:(UIButton *)sender {
   
@@ -101,7 +102,11 @@
   
   DeparturePickerViewController *departurePicker = [[DeparturePickerViewController alloc]init];
   
-  departurePicker.selectedStartDate = self.startDateFromString;
+  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
+  
+  departurePicker.selectedStartDate = self.datePicker.date;
+  
+  NSLog(@"Selected Start Date: %@",self.datePicker.date);
   
   [self.navigationController pushViewController:departurePicker animated:true];
   
