@@ -10,11 +10,14 @@
 #import "AppDelegate.h"
 #import "Reservation.h"
 #import "ReserveYourRoomTableViewCell.h"
+#import "Room.h"
+#import "Hotel.h"
 
 @interface ReserveYourRoomViewController ()
 
 @property(strong, nonatomic) UITableView *tableViewReserveYourRoom;
 @property(strong,nonatomic) NSArray *hotelsArray;
+@property(strong,nonatomic) NSArray *roomsArray;
 
 @end
 
@@ -25,7 +28,7 @@
 -(void)loadView{
   
   UIView *rootView = [[UIView alloc]init];
-  UITableView *tableView = [[UITableView alloc]initWithFrame:rootView.frame style:UITableViewStylePlain];
+  UITableView *tableView = [[UITableView alloc]initWithFrame:rootView.frame style:UITableViewStyleGrouped];
   
   self.tableViewReserveYourRoom = tableView;
   [tableView setTranslatesAutoresizingMaskIntoConstraints:false];
@@ -60,18 +63,17 @@
   
   [self.tableViewReserveYourRoom registerClass:[ReserveYourRoomTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
 
-  
   [self fetchAvailableRoomsForFromDate:fromDate toDate:toDate];
-  
-  
   
   AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
   
-  NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+  NSFetchRequest *fetchRequestHotel = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+  NSFetchRequest *fetchRequestRoom = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
   
   NSError *fetchError;
   
-  self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
+  self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestHotel error:&fetchError];
+  self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
   
   if (fetchError) {
     NSLog(@"Error");
@@ -88,7 +90,32 @@
  
 }
 
-#pragma mark - Rooms Availability 
+#pragma mark - UITableViewDataSource
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+  
+  return self.hotelsArray.count;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+  
+  return self.roomsArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+  
+  // Configure the cell...
+  
+  Room *room = self.roomsArray[indexPath.section];
+  cell.textLabel.text = [NSString stringWithFormat:@"%@",room.number];
+  
+  
+  return cell;
+  
+}
+
+#pragma mark - Rooms Availability
 
 -(NSArray *)fetchAvailableRoomsForFromDate:(NSDate*)fromDate toDate:(NSDate *)toDate {
   
