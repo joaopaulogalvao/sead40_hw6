@@ -12,16 +12,20 @@
 #import "ReserveYourRoomTableViewCell.h"
 #import "Room.h"
 #import "Hotel.h"
+#import <CoreData/CoreData.h>
 
 @interface ReserveYourRoomViewController ()
 
 @property(strong, nonatomic) UITableView *tableViewReserveYourRoom;
 @property(strong,nonatomic) NSArray *hotelsArray;
 @property(strong,nonatomic) NSArray *roomsArray;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+//@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
 
 @implementation ReserveYourRoomViewController
+
 
 #pragma mark - Life cycle methods
 
@@ -68,12 +72,26 @@
   AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
   
   NSFetchRequest *fetchRequestHotel = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-  NSFetchRequest *fetchRequestRoom = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
   
   NSError *fetchError;
   
   self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestHotel error:&fetchError];
-  self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
+  //self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
+  
+  
+//  NSMutableArray *hotels = [NSMutableArray array];
+//  
+//  [self.roomsArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//    
+//    Room *room = [[Room alloc]init];
+//    room.number = [self.roomsArray objectAtIndex:idx];
+//    [hotels addObject:room];
+//    
+//  }];
+//  
+//  NSSortDescriptor *roomsWithSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"hotelsArray" ascending:true];
+//  
+//  NSLog(@"sort by rooms: %@",roomsWithSortDescriptor);
   
   if (fetchError) {
     NSLog(@"Error");
@@ -89,6 +107,30 @@
     // Dispose of any resources that can be recreated.
  
 }
+
+#pragma mark - NSFetchedResultController
+-(NSFetchedResultsController *)fetchedResultsController {
+  
+  if (self.fetchedResultsController != nil) {
+    return self.fetchedResultsController;
+  }
+  
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  
+  NSFetchRequest *fetchRequestRoom = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Hotel" inManagedObjectContext:appDelegate.managedObjectContext];
+  
+  [fetchRequestRoom setEntity:entity];
+  
+  NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"rooms.number" ascending:true];
+  
+  [fetchRequestRoom setSortDescriptors:[NSArray arrayWithObject:sort]];
+  
+  
+  
+  return self.fetchedResultsController;
+}
+
 
 #pragma mark - UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
