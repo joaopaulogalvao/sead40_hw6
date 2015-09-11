@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface ReserveYourRoomViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ReserveYourRoomViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) NSDate *selectedStartDate;
 @property (strong, nonatomic) NSDate *selectedEndDate;
 @end
