@@ -20,7 +20,7 @@
 @property(strong,nonatomic) NSArray *hotelsArray;
 @property(strong,nonatomic) NSArray *roomsArray;
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+//@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -144,20 +144,20 @@
     return self.fetchedResultsController;
   }
   
-  //AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
   
-  NSFetchRequest *fetchRequestHotel = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
+  NSFetchRequest *fetchRequestHotel = [[NSFetchRequest alloc]init];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Hotel" inManagedObjectContext:appDelegate.managedObjectContext];
   
   [fetchRequestHotel setEntity:entity];
   
-  NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"hotel.name" ascending:true];
+  NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"rooms.number" ascending:true];
   
   [fetchRequestHotel setSortDescriptors:[NSArray arrayWithObject:sort]];
   
   [fetchRequestHotel setFetchBatchSize:20];
   
-  NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"rooms.number" cacheName:nil];
+  NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
   
   self.fetchedResultsController = theFetchedResultController;
   self.fetchedResultsController.delegate = self; // check
@@ -172,14 +172,14 @@
 
 -(NSArray *)fetchAvailableRoomsForFromDate:(NSDate*)fromDate toDate:(NSDate *)toDate {
   
-  //AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
   
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
   
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@",toDate,fromDate];
   request.predicate = predicate;
   NSError *fetchError;
-  NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&fetchError];
+  NSArray *results = [appDelegate.managedObjectContext executeFetchRequest:request error:&fetchError];
   
   NSMutableArray *badRooms = [[NSMutableArray alloc] init];
   for (Reservation *reservation in results) {
@@ -192,7 +192,7 @@
   
   NSError *finalError;
   
-  NSArray *finalResults = [self.managedObjectContext executeFetchRequest:finalRequest error:&finalError];
+  NSArray *finalResults = [appDelegate.managedObjectContext executeFetchRequest:finalRequest error:&finalError];
   
   if (finalError) {
     return nil;
