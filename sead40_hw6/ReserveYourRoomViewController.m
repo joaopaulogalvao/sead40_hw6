@@ -140,10 +140,9 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
   
-//  Hotel *hotelName  = self.hotelsArray[section];
   id <NSFetchedResultsSectionInfo> hotel = [self.fetchedResultsController sections][section];
   NSString *hotelName = hotel.name;
-  NSLog(@"sections: %@", hotel);
+//  NSLog(@"sections: %@", hotel);
   return [NSString stringWithFormat:@"%@",hotelName];
 }
 

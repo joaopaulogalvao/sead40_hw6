@@ -10,13 +10,41 @@
 
 @interface ConfirmReservationViewController ()
 
+@property(strong, nonatomic) UIViewController *viewControllerConfirmYourReservation;
+
 @end
 
 @implementation ConfirmReservationViewController
 
+-(void)loadView{
+  
+  //Create the view
+  UIView *rootView = [[UIView alloc]init];
+  
+  //RootView - set it as a property of my viewController
+  self.view = rootView;
+  
+  //Add Label first name
+  
+  //Add Label last name
+  
+  //Add TextField first name
+  
+  //Add TextField last name
+  
+  //Add Confirm reservation button
+  
+  //Add arrival date label
+  
+  //Add departure date label
+  
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+  self.title = @"Confirm Reservation";
+  self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
