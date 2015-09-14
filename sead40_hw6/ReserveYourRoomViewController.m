@@ -299,14 +299,6 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 }
 
 
--(void) bookReservation {
-  
-  //  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-  //
-  //  Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:appDelegate.managedObjectContext];
-  
-  
-}
 /*
 #pragma mark - Navigation
 
