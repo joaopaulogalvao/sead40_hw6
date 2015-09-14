@@ -12,6 +12,7 @@
 #import "ReserveYourRoomTableViewCell.h"
 #import "Room.h"
 #import "Hotel.h"
+#import "ConfirmReservationViewController.h"
 
 static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 
@@ -106,6 +107,25 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
  
+}
+
+#pragma mark - UITableViewDelegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+  ConfirmReservationViewController *roomConfirmationView = [[ConfirmReservationViewController alloc]init];
+  
+  roomConfirmationView.selectedRoom = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  
+  Room *info = [self.fetchedResultsController objectAtIndexPath:indexPath];
+  
+  NSLog(@"Rooms for indexPath: %@",info);
+  
+  //NSLog(@"Selected Hotel: %@",selectedHotel);
+  
+  //[self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionNone];
+  
+  [self.navigationController pushViewController:roomConfirmationView animated:true];
+  
 }
 
 #pragma mark - UITableViewDataSource
