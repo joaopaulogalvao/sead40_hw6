@@ -34,6 +34,8 @@
   //Create a button
   UIButton *submitButton = [[UIButton alloc]init];
   
+  [submitButton addTarget:self action:@selector(bookReservation:) forControlEvents:UIControlEventTouchUpInside];
+  
   NSDictionary *views = @{@"viewControllerConfirmYourReservation" : rootView, @"firstNameLabel" : firstNameLabel, @"submitButton" : submitButton};
   
   //Set Label first name constraints
@@ -92,30 +94,21 @@
 }
 
 #pragma mark - My Actions
--(void) bookReservation {
+-(void) bookReservation: (UIButton *)sender {
+  
+  NSLog(@"Book reservation clicked");
   
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
   
     Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:appDelegate.managedObjectContext];
   
-  reservation.startDate = [NSDate date];
-  reservation.endDate = [NSDate dateWithTimeInterval:86400 * 2 sinceDate:[NSDate date]];
+  reservation.startDate = self.selectedConfirmStartDate;
+  reservation.endDate = self.selectedConfirmEndDate;
+  reservation.room = self.selectedRoom;
   
-  NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"number == 2"];
-  NSError *fetchError;
-  NSArray *results = [appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&fetchError];
-  if (results.count > 0) {
-    Room *room = results.firstObject;
-    reservation.room = room;
-    NSError *saveError;
-    if (![appDelegate.managedObjectContext save:&saveError]) {
-      NSLog(@"%@",saveError.localizedDescription);
-    }
-    
-  }
-  
-  
+  NSLog(@"Reservation Confirmed - Starting on: %@", self.selectedConfirmStartDate);
+  NSLog(@"Reservation Confirmed - Ending on: %@", self.selectedConfirmEndDate);
+  NSLog(@"Reservation Confirmed - Room: %@",self.selectedRoom);
   
 }
 

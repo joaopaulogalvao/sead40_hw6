@@ -112,17 +112,21 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   
+  // Instantiate the Confirmation View
   ConfirmReservationViewController *roomConfirmationView = [[ConfirmReservationViewController alloc]init];
   
+  //Pass the selected room
   roomConfirmationView.selectedRoom = [self.fetchedResultsController objectAtIndexPath:indexPath];
-  
   Room *info = [self.fetchedResultsController objectAtIndexPath:indexPath];
   
   NSLog(@"Rooms for indexPath: %@",info);
   
-  //NSLog(@"Selected Hotel: %@",selectedHotel);
+  //Pass date references mark unavailable ones with something...
+  roomConfirmationView.selectedConfirmStartDate = self.selectedStartDate;
+  roomConfirmationView.selectedConfirmEndDate = self.selectedEndDate;
   
-  //[self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionNone];
+  NSLog(@"Selected Confirm Start Date: %@",roomConfirmationView.selectedConfirmStartDate);
+  NSLog(@"Selected Confirm Departure Date: %@",roomConfirmationView.selectedConfirmEndDate);
   
   [self.navigationController pushViewController:roomConfirmationView animated:true];
   

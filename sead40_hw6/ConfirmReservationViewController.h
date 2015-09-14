@@ -12,5 +12,8 @@
 @interface ConfirmReservationViewController : UIViewController
 
 @property (nonatomic, strong) Room *selectedRoom;
+@property (strong, nonatomic) NSDate *selectedConfirmStartDate;
+@property (strong, nonatomic) NSDate *selectedConfirmEndDate;
+
 
 @end
