@@ -140,9 +140,11 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
   
-  Hotel *hotelName  = self.hotelsArray[section];
-  
-  return [NSString stringWithFormat:@"%@",hotelName.name];
+//  Hotel *hotelName  = self.hotelsArray[section];
+  id <NSFetchedResultsSectionInfo> hotel = [self.fetchedResultsController sections][section];
+  NSString *hotelName = hotel.name;
+  NSLog(@"sections: %@", hotel);
+  return [NSString stringWithFormat:@"%@",hotelName];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -190,7 +192,7 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
     [fetchRequestHotel setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     
-    NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:@"Hotel" cacheName:nil];
+    NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:@"Hotel.name" cacheName:nil];
     
     _fetchedResultsController = theFetchedResultController;
     _fetchedResultsController.delegate = self; // check
