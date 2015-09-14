@@ -34,9 +34,12 @@
   //Create a button
   UIButton *submitButton = [[UIButton alloc]init];
   
+  //Create a TextField
+  UITextField *textFieldFirstName = [[UITextField alloc]init];
+  
   [submitButton addTarget:self action:@selector(bookReservation:) forControlEvents:UIControlEventTouchUpInside];
   
-  NSDictionary *views = @{@"viewControllerConfirmYourReservation" : rootView, @"firstNameLabel" : firstNameLabel, @"submitButton" : submitButton};
+  NSDictionary *views = @{@"viewControllerConfirmYourReservation" : rootView, @"firstNameLabel" : firstNameLabel,@"textFieldFirstName" : textFieldFirstName, @"submitButton" : submitButton};
   
   //Set Label first name constraints
   firstNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -52,17 +55,27 @@
   //submitButton.backgroundColor = [UIColor blackColor];
   [rootView addSubview:submitButton];
   
+  //Set TextField properties
+  textFieldFirstName.translatesAutoresizingMaskIntoConstraints = NO;
+  [textFieldFirstName setPlaceholder:@"First name"];
+  [rootView addSubview:textFieldFirstName];
+  
   //Add Constraints to Submit Button
   NSArray *firstNameLabelVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[submitButton]-10-|" options:0 metrics:nil views:views];
   [rootView addConstraints:firstNameLabelVerticalConstraints];
-  
   NSArray *firstNameLabelHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-100-[submitButton]-100-|" options:0 metrics:nil views:views];
   [rootView addConstraints:firstNameLabelHorizontalConstraints];
 
-  
   //Add constraints to first name label
   [rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[firstNameLabel]" options:0 metrics:nil views:views]];
-  [rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[firstNameLabel]-50-|" options:0 metrics:nil views:views]];
+  [rootView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[firstNameLabel]-200-|" options:0 metrics:nil views:views]];
+  
+  //Add constraints to first name textfield
+  NSArray *textFieldFirstNameHorizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-150-[textFieldFirstName]" options:0 metrics:nil views:views];
+  [rootView addConstraints:textFieldFirstNameHorizontalConstraints];
+  
+  NSArray *textFieldFirstNameVerticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[textFieldFirstName]-200-|" options:0 metrics:nil views:views];
+  [rootView addConstraints:textFieldFirstNameVerticalConstraints];
   
   //Add Label last name
   
