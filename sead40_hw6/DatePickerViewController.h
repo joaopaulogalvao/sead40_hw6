@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DatePickerViewController : UIViewController
+@interface DatePickerViewController : UIViewController<UIPickerViewDelegate>
 
 @end

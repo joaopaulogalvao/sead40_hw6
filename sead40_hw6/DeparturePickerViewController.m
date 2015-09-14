@@ -1,32 +1,34 @@
 //
-//  DatePickerViewController.m
+//  DeparturePickerViewController.m
 //  sead40_hw6
 //
-//  Created by Joao Paulo Galvao Alves on 9/8/15.
+//  Created by Joao Paulo Galvao Alves on 9/10/15.
 //  Copyright (c) 2015 jalvestech. All rights reserved.
 //
 
-#import "DatePickerViewController.h"
 #import "DeparturePickerViewController.h"
+#import "ReserveYourRoomViewController.h"
 
-@interface DatePickerViewController ()
+@interface DeparturePickerViewController ()
 
-@property (strong,nonatomic) UIDatePicker *datePicker;
+@property (strong,nonatomic) UIDatePicker *departureDatePicker;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
-@property (strong, nonatomic) NSMutableArray *startDates;
-@property (strong, nonatomic) NSDate *selectedStartDate;
-@property (strong, nonatomic) NSDate *startDateFromString;
+@property (strong, nonatomic) NSMutableArray *arrayOfReservationDates;
+@property (strong, nonatomic) NSDate *selectedDepartureDate;
+@property (strong, nonatomic) NSDate *departureDateFromString;
+
 
 @end
 
-@implementation DatePickerViewController
+@implementation DeparturePickerViewController
+
 
 -(void)loadView{
   UIView *rootView = [[UIView alloc]init];
   rootView.backgroundColor = [UIColor whiteColor];
   
   UIDatePicker *datePicker = [[UIDatePicker alloc]init];
-  self.datePicker = datePicker;
+  self.departureDatePicker = datePicker;
   
   //[datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
   
@@ -35,7 +37,7 @@
   UIButton *nextButton = [[UIButton alloc]init];
   [nextButton addTarget:self action:@selector(nextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
   [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [nextButton setTitle:NSLocalizedString(@"Next", nil)  forState:UIControlStateNormal];
+  [nextButton setTitle:NSLocalizedString(@"Next",nil) forState:UIControlStateNormal];
   //Let me take control
   [nextButton setTranslatesAutoresizingMaskIntoConstraints:false];
   
@@ -50,30 +52,37 @@
   
   self.view = rootView;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
   
   //Add view's title
-  self.title = NSLocalizedString(@"Select Arrival Date",nil);
+  self.title = NSLocalizedString(@"Select Departure Date",nil);
   
   //Add type
-  self.datePicker.datePickerMode = UIDatePickerModeDate;
+  self.departureDatePicker.datePickerMode = UIDatePickerModeDate;
   self.dateFormatter = [[NSDateFormatter alloc]init];
+  
+  //Grab the arrival date reference
+  NSLog(@"Reference Arrival date: %@",self.selectedStartDate);
+  
+  //Write a test
   
   //Grab first loaded date // reference can't be nil
   //dateFormatter.dateStyle = NSDateFormatterShortStyle;
-  DeparturePickerViewController *arrivalPicker = [[DeparturePickerViewController alloc]init];
+  ReserveYourRoomViewController *departurePicker = [[ReserveYourRoomViewController alloc]init];
   
   [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
   
-  arrivalPicker.selectedStartDate = self.datePicker.date;
+  departurePicker.selectedStartDate = self.departureDatePicker.date;
   
   //Convert String to Date
-  NSLog(@"First Load Start Date: %@",self.datePicker.date);
+  NSLog(@"First Load Departure Date: %@",self.departureDatePicker.date);
+  
   
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -89,37 +98,42 @@
 //  NSString *dateString = [self.dateFormatter stringFromDate:sender.date];
 //  
 //  //Convert String to Date
-//  self.startDateFromString = [self.dateFormatter dateFromString:dateString];
-//  NSLog(@"Selected Start Date String:%@",dateString);
-//  NSLog(@"Selected Start Date: %@",self.startDateFromString);
+//  self.departureDateFromString = [self.dateFormatter dateFromString:dateString];
+//  NSLog(@"Selected Departure Date String:%@",dateString);
+//  NSLog(@"Selected Departure Date: %@",self.departureDateFromString);
+//  
+//  //If the user does not change the picker, store it
+//  self.arrayOfReservationDates = [NSMutableArray arrayWithObjects:self.selectedStartDate,self.departureDateFromString, nil];
+//  
+//  NSLog(@"Array of reservation dates - departure value changed: %@",self.arrayOfReservationDates);
 //}
 
 -(void)nextButtonPressed:(UIButton *)sender {
   
   NSLog(@"Next button clicked.");
   
-  //Pass the reference to departure...
   
-  DeparturePickerViewController *departurePicker = [[DeparturePickerViewController alloc]init];
+  //Pass both references to rooms and mark unavailable ones with something...
+  ReserveYourRoomViewController *reserveYourRoomView = [[ReserveYourRoomViewController alloc]init];
+  reserveYourRoomView.selectedStartDate = self.selectedStartDate;
+  reserveYourRoomView.selectedEndDate = self.departureDatePicker.date;
   
-  [self.dateFormatter setDateFormat:@"MMMM dd yyyy"];
+  NSLog(@"Selected Start Date: %@",self.selectedStartDate);
+  NSLog(@"Selected Departure Date: %@",self.departureDatePicker.date);
   
-  departurePicker.selectedStartDate = self.datePicker.date;
-  
-  NSLog(@"Selected Start Date: %@",self.datePicker.date);
-  
-  [self.navigationController pushViewController:departurePicker animated:true];
+  [self.navigationController pushViewController:reserveYourRoomView animated:true];
   
 }
 
 
-
-#pragma mark - Navigation
 /*
+#pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
+
 @end

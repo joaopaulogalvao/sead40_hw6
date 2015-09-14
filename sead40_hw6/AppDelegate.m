@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "HotelListTableViewController.h"
+#import "MenuViewController.h"
 #import "Hotel.h"
 #import "Room.h"
 
@@ -41,9 +42,9 @@
   
   [self.window makeKeyAndVisible];
   
-  HotelListTableViewController *hotelListViewController = [[HotelListTableViewController alloc]init];
+  MenuViewController *menuTableViewController = [[MenuViewController alloc]init];
   
-  UINavigationController *hotelsNavigation = [[UINavigationController alloc]initWithRootViewController:hotelListViewController];
+  UINavigationController *hotelsNavigation = [[UINavigationController alloc]initWithRootViewController:menuTableViewController];
   
   self.window.rootViewController = hotelsNavigation;
   
@@ -74,23 +75,37 @@
       
     } else {
       
-      for (NSDictionary *hotelDict in rootObject) {
-        if ([hotelDict isEqual:@"Hotels"]) {
           NSDictionary *hotels = [rootObject objectForKey:@"Hotels"];
+          
+          //Loop thru hotels Dictionary
+
           for (NSDictionary *hotelsInfo in hotels) {
             NSString *hotelName = [hotelsInfo objectForKey:@"name"];
             NSString *hotelLocation = [hotelsInfo objectForKey:@"location"];
+            NSDictionary *hotelRoomNumber = [hotelsInfo objectForKey:@"rooms"];
             NSNumber *hotelStars = [hotelsInfo objectForKey:@"stars"];
             
+            //Create the Hotel object for entity Hotel
             
             Hotel *hotel = [NSEntityDescription insertNewObjectForEntityForName:@"Hotel" inManagedObjectContext:self.managedObjectContext];
             hotel.name = hotelName;
             hotel.location = hotelLocation;
             hotel.stars = hotelStars;
+      
             
+            //Access room Dictionary
+            
+            for (NSDictionary *roomsInfo in hotelRoomNumber) {
+              NSNumber *roomNumber = [roomsInfo objectForKey:@"number"];
+              
+              Room *room = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
+              room.number = roomNumber;
+              room.hotel = hotel;
+              NSLog(@"%@",roomNumber);
+            }
+ 
           }
-        }
-      }
+          
     }
       
       

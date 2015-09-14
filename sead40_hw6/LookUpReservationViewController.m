@@ -1,20 +1,18 @@
 //
-//  BookReservationViewController.m
+//  LookUpReservationViewController.m
 //  sead40_hw6
 //
-//  Created by Joao Paulo Galvao Alves on 9/8/15.
+//  Created by Joao Paulo Galvao Alves on 9/10/15.
 //  Copyright (c) 2015 jalvestech. All rights reserved.
 //
 
-#import "BookReservationViewController.h"
-#import "AppDelegate.h"
-#import "Reservation.h"
+#import "LookUpReservationViewController.h"
 
-@interface BookReservationViewController ()
+@interface LookUpReservationViewController ()
 
 @end
 
-@implementation BookReservationViewController
+@implementation LookUpReservationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,15 +22,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void) bookReservation {
-  
-  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-  
-  Reservation *reservation = [NSEntityDescription insertNewObjectForEntityForName:@"Reservation" inManagedObjectContext:appDelegate.managedObjectContext];
-  
-  
 }
 
 /*

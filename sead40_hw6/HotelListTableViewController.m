@@ -11,6 +11,7 @@
 #import "Hotel.h"
 #import "AppDelegate.h"
 #import "RoomViewController.h"
+#import "Room.h"
 
 //static NSString *CellIdentifier = @"CellIdentifier";
 
@@ -81,7 +82,7 @@
   //%K(substitute the value with the attribute) - values on your right will be in quotes
   //%@ - should be on your right
   
-  fetchRequest.predicate = [NSPredicate predicateWithFormat:nil];
+  //fetchRequest.predicate = [NSPredicate predicateWithFormat:nil];
   
   NSError *fetchError;
   
@@ -140,11 +141,22 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   
+  
   RoomViewController *roomListView = [[RoomViewController alloc]init];
+
+  roomListView.selectedHotel = self.hotelsArray[indexPath.row];
+  
+  Hotel *selectedHotel = self.hotelsArray[indexPath.row];
+  
+  NSLog(@"Rooms for indexPath: %lu",(unsigned long)selectedHotel.rooms.count);
+  
+  //NSLog(@"Selected Hotel: %@",selectedHotel);
+  
+  //[self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionNone];
   
   [self.navigationController pushViewController:roomListView animated:true];
   
-  [self.tableView selectRowAtIndexPath:indexPath animated:true scrollPosition:UITableViewScrollPositionNone];
+  
   
 //  [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
   
