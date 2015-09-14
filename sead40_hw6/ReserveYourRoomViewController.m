@@ -12,7 +12,8 @@
 #import "ReserveYourRoomTableViewCell.h"
 #import "Room.h"
 #import "Hotel.h"
-#import <CoreData/CoreData.h>
+
+static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 
 @interface ReserveYourRoomViewController ()
 
@@ -32,7 +33,7 @@
 -(void)loadView{
   
   UIView *rootView = [[UIView alloc]init];
-  UITableView *tableView = [[UITableView alloc]initWithFrame:rootView.frame style:UITableViewStyleGrouped];
+  UITableView *tableView = [[UITableView alloc]initWithFrame:rootView.frame style:UITableViewStylePlain];
   
   self.tableViewReserveYourRoom = tableView;
   [tableView setTranslatesAutoresizingMaskIntoConstraints:false];
@@ -68,24 +69,28 @@
 
   [self fetchAvailableRoomsForFromDate:fromDate toDate:toDate];
   
-//  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-//  
-//  NSFetchRequest *fetchRequestHotel = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-//  
-  
-  
-//  self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestHotel error:&fetchError];
-//  self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+//
+  NSFetchRequest *fetchRequestHotel = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+  NSFetchRequest *fetchRequestRoom = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+//
   
   NSError *fetchError;
   
-  if (![[self fetchedResultsController] performFetch:&fetchError]) {
+  self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestHotel error:&fetchError];
+  self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
+  
+  NSLog(@"Hotels array: %lu",(unsigned long)self.hotelsArray.count);
+  
+ [_fetchedResultsController performFetch:&fetchError];
+  
+  if (fetchError != nil) {
     // Update to handle the error appropriately.
     NSLog(@"Unresolved error %@, %@", fetchError, [fetchError userInfo]);
-    exit(-1);  // Fail
+    //exit(-1);  // Fail
   }
   
-  self.title = @"Failed Banks";
+  self.title = @"Hotels";
   
   [self.tableViewReserveYourRoom reloadData];
   
@@ -93,7 +98,8 @@
 }
 
 -(void)viewDidUnload{
-  self.fetchedResultsController = nil;
+  [super viewDidUnload];
+  _fetchedResultsController = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,11 +109,6 @@
 }
 
 #pragma mark - UITableViewDataSource
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-  
-  return self.hotelsArray.count;
-}
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   
@@ -117,6 +118,17 @@
   return [sectionInfo numberOfObjects];
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+  
+  return [[_fetchedResultsController sections] count];
+}
+
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+  
+  Room *info = [_fetchedResultsController objectAtIndexPath:indexPath];
+  cell.textLabel.text = [NSString stringWithFormat:@"%@",info.number];
+  
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
   
@@ -131,75 +143,34 @@
   
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-  Room *info = [_fetchedResultsController objectAtIndexPath:indexPath];
-  cell.textLabel.text = [NSString stringWithFormat:@"%@",info.number];
-  
-}
 
 #pragma mark - NSFetchedResultController
 -(NSFetchedResultsController *)fetchedResultsController {
   
-  if (self.fetchedResultsController != nil) {
-    return self.fetchedResultsController;
+  if (_fetchedResultsController == nil) {
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    NSFetchRequest *fetchRequestHotel = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Room" inManagedObjectContext:appDelegate.managedObjectContext];
+    
+    [fetchRequestHotel setEntity:entity];
+    
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"rooms.number" ascending:true];
+    
+    [fetchRequestHotel setSortDescriptors:[NSArray arrayWithObject:sort]];
+    
+    
+    NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:@"Hotel" cacheName:@"Hotel"];
+    
+    _fetchedResultsController = theFetchedResultController;
+    _fetchedResultsController.delegate = self; // check
+    
   }
   
-  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-  
-  NSFetchRequest *fetchRequestHotel = [[NSFetchRequest alloc]init];
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"Hotel" inManagedObjectContext:appDelegate.managedObjectContext];
-  
-  [fetchRequestHotel setEntity:entity];
-  
-  NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"rooms.number" ascending:true];
-  
-  [fetchRequestHotel setSortDescriptors:[NSArray arrayWithObject:sort]];
-  
-  [fetchRequestHotel setFetchBatchSize:20];
-  
-  NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-  
-  self.fetchedResultsController = theFetchedResultController;
-  self.fetchedResultsController.delegate = self; // check
-  
-  
-  return self.fetchedResultsController;
+  return _fetchedResultsController;
 }
 
-
-
-#pragma mark - Rooms Availability
-
--(NSArray *)fetchAvailableRoomsForFromDate:(NSDate*)fromDate toDate:(NSDate *)toDate {
-  
-  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-  
-  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-  
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@",toDate,fromDate];
-  request.predicate = predicate;
-  NSError *fetchError;
-  NSArray *results = [appDelegate.managedObjectContext executeFetchRequest:request error:&fetchError];
-  
-  NSMutableArray *badRooms = [[NSMutableArray alloc] init];
-  for (Reservation *reservation in results) {
-    [badRooms addObject:reservation.room];
-  }
-  
-  NSFetchRequest *finalRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-  NSPredicate *finalPredicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", badRooms];
-  finalRequest.predicate = finalPredicate;
-  
-  NSError *finalError;
-  
-  NSArray *finalResults = [appDelegate.managedObjectContext executeFetchRequest:finalRequest error:&finalError];
-  
-  if (finalError) {
-    return nil;
-  }
-  return finalResults;
-  
-}
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
   // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
@@ -262,6 +233,41 @@
   // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
   [self.tableViewReserveYourRoom endUpdates];
 }
+
+
+#pragma mark - Rooms Availability
+
+-(NSArray *)fetchAvailableRoomsForFromDate:(NSDate*)fromDate toDate:(NSDate *)toDate {
+  
+  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+  
+  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+  
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@",toDate,fromDate];
+  request.predicate = predicate;
+  NSError *fetchError;
+  NSArray *results = [appDelegate.managedObjectContext executeFetchRequest:request error:&fetchError];
+  
+  NSMutableArray *badRooms = [[NSMutableArray alloc] init];
+  for (Reservation *reservation in results) {
+    [badRooms addObject:reservation.room];
+  }
+  
+  NSFetchRequest *finalRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+  NSPredicate *finalPredicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", badRooms];
+  finalRequest.predicate = finalPredicate;
+  
+  NSError *finalError;
+  
+  NSArray *finalResults = [appDelegate.managedObjectContext executeFetchRequest:finalRequest error:&finalError];
+  
+  if (finalError) {
+    return nil;
+  }
+  return finalResults;
+  
+}
+
 
 -(void) bookReservation {
   

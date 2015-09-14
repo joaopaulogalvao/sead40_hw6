@@ -91,6 +91,7 @@
             hotel.name = hotelName;
             hotel.location = hotelLocation;
             hotel.stars = hotelStars;
+      
             
             //Access room Dictionary
             
