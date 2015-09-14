@@ -82,7 +82,7 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
   
   NSLog(@"Hotels array: %lu",(unsigned long)self.hotelsArray.count);
   
- [_fetchedResultsController performFetch:&fetchError];
+ [self.fetchedResultsController performFetch:&fetchError];
   
   if (fetchError != nil) {
     // Update to handle the error appropriately.
@@ -99,7 +99,7 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 
 -(void)viewDidUnload{
   [super viewDidUnload];
-  _fetchedResultsController = nil;
+  self.fetchedResultsController = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,14 +118,23 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
   return [sectionInfo numberOfObjects];
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+  
+  Hotel *hotelName  = self.hotelsArray[section];
+  
+  return [NSString stringWithFormat:@"%@",hotelName.name];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+  
+  NSLog(@"%lu",(unsigned long)[[_fetchedResultsController sections] count]);
   
   return [[_fetchedResultsController sections] count];
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
   
-  Room *info = [_fetchedResultsController objectAtIndexPath:indexPath];
+  Room *info = [self.fetchedResultsController objectAtIndexPath:indexPath];
   cell.textLabel.text = [NSString stringWithFormat:@"%@",info.number];
   
 }
@@ -156,12 +165,12 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
     
     [fetchRequestHotel setEntity:entity];
     
-    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"rooms.number" ascending:true];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc]initWithKey:@"number" ascending:true];
     
     [fetchRequestHotel setSortDescriptors:[NSArray arrayWithObject:sort]];
     
     
-    NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:@"Hotel" cacheName:@"Hotel"];
+    NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:@"Hotel" cacheName:nil];
     
     _fetchedResultsController = theFetchedResultController;
     _fetchedResultsController.delegate = self; // check
