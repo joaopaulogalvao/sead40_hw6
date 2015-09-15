@@ -82,6 +82,7 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
   self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
   
   NSLog(@"Hotels array: %lu",(unsigned long)self.hotelsArray.count);
+  //[self fetchAvailableRoomsForFromDate:startDate toDate:endDate];
   
  [self.fetchedResultsController performFetch:&fetchError];
   
@@ -194,8 +195,35 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
     
     [fetchRequestHotel setSortDescriptors:[NSArray arrayWithObject:sort]];
     
+    NSFetchRequest *fetchRequestReservation = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
     
-    NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequestHotel managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:@"Hotel.name" cacheName:nil];
+    NSSortDescriptor *sortReservation = [[NSSortDescriptor alloc]initWithKey:@"room" ascending:true];
+    
+    [fetchRequestReservation setSortDescriptors:[NSArray arrayWithObject:sortReservation]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@",self.selectedEndDate,self.selectedStartDate];
+    fetchRequestReservation.predicate = predicate;
+    NSLog(@"Predicate: %@",predicate);
+    
+    NSError *fetchError;
+    NSArray *results = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestReservation error:&fetchError];
+    
+    NSMutableArray *badRooms = [[NSMutableArray alloc] init];
+    for (Reservation *reservation in results) {
+      [badRooms addObject:reservation.room];
+    }
+    
+    NSLog(@"Bad Rooms: %@",badRooms);
+    
+    NSFetchRequest *finalRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+    NSPredicate *finalPredicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", badRooms];
+    finalRequest.predicate = finalPredicate;
+    
+    NSSortDescriptor *roomNumber = [[NSSortDescriptor alloc]initWithKey:@"number" ascending:true];
+    
+    [finalRequest setSortDescriptors:@[roomNumber]];
+    
+    NSFetchedResultsController *theFetchedResultController = [[NSFetchedResultsController alloc]initWithFetchRequest:finalRequest managedObjectContext:appDelegate.managedObjectContext sectionNameKeyPath:@"Hotel.name" cacheName:nil];
     
     _fetchedResultsController = theFetchedResultController;
     _fetchedResultsController.delegate = self; // check

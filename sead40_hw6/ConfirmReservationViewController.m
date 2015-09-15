@@ -123,6 +123,8 @@
   NSLog(@"Reservation Confirmed - Ending on: %@", self.selectedConfirmEndDate);
   NSLog(@"Reservation Confirmed - Room: %@",self.selectedRoom);
   
+  [self.navigationController popToRootViewControllerAnimated:true];
+  
 }
 
 /*
