@@ -49,17 +49,6 @@
   
 }
 
-//-(instancetype)initWithStyle:(UITableViewStyle)style{
-//  
-//  self = [super initWithStyle:style];
-//  if (self) {
-//    // Custom initialization
-//    self.title = @"Table View Controller";
-//  }
-//  
-//  return self;
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
   

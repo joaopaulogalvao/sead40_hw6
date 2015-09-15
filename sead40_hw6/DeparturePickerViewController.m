@@ -61,6 +61,10 @@
   //Add view's title
   self.title = NSLocalizedString(@"Select Departure Date",nil);
   
+  //Set minimum date
+  NSDate *minimumDepartureDate = [self.selectedStartDate dateByAddingTimeInterval:60*60*24];
+  [self.departureDatePicker setMinimumDate:minimumDepartureDate];
+  
   //Add type
   self.departureDatePicker.datePickerMode = UIDatePickerModeDate;
   self.dateFormatter = [[NSDateFormatter alloc]init];

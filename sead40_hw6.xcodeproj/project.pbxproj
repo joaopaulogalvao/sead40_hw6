@@ -32,6 +32,7 @@
 		6CB428E51BA240F100786ADD /* LookUpReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428E41BA240F100786ADD /* LookUpReservationViewController.m */; };
 		6CB428E81BA3362400786ADD /* ReserveYourRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428E71BA3362400786ADD /* ReserveYourRoomTableViewCell.m */; };
 		6CB428EE1BA3380D00786ADD /* HotelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428ED1BA3380D00786ADD /* HotelService.m */; };
+		6CB428F11BA68B2500786ADD /* ConfirmReservationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428F01BA68B2500786ADD /* ConfirmReservationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,8 @@
 		6CB428E71BA3362400786ADD /* ReserveYourRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveYourRoomTableViewCell.m; sourceTree = "<group>"; };
 		6CB428EC1BA3380D00786ADD /* HotelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelService.h; sourceTree = "<group>"; };
 		6CB428ED1BA3380D00786ADD /* HotelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelService.m; sourceTree = "<group>"; };
+		6CB428EF1BA68B2500786ADD /* ConfirmReservationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfirmReservationViewController.h; sourceTree = "<group>"; };
+		6CB428F01BA68B2500786ADD /* ConfirmReservationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfirmReservationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,8 @@
 				6CB428CF1BA2079C00786ADD /* DeparturePickerViewController.m */,
 				6CB428E01BA23E3700786ADD /* ReserveYourRoomViewController.h */,
 				6CB428E11BA23E3700786ADD /* ReserveYourRoomViewController.m */,
+				6CB428EF1BA68B2500786ADD /* ConfirmReservationViewController.h */,
+				6CB428F01BA68B2500786ADD /* ConfirmReservationViewController.m */,
 				6CB428E31BA240F100786ADD /* LookUpReservationViewController.h */,
 				6CB428E41BA240F100786ADD /* LookUpReservationViewController.m */,
 				6CB428B91BA0D14400786ADD /* CoreDataStack.h */,
@@ -344,6 +349,7 @@
 				6CB428531B9E295100786ADD /* ViewController.m in Sources */,
 				6CB4288C1B9F525100786ADD /* HotelListTableViewController.m in Sources */,
 				6CB428C11BA116ED00786ADD /* Hotel.m in Sources */,
+				6CB428F11BA68B2500786ADD /* ConfirmReservationViewController.m in Sources */,
 				6CB428BB1BA0D14400786ADD /* CoreDataStack.m in Sources */,
 				6CB428B81BA0939700786ADD /* RoomViewController.m in Sources */,
 				6CB4288F1B9F565000786ADD /* HotelTableViewCell.m in Sources */,

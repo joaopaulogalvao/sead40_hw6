@@ -97,9 +97,13 @@
             
             for (NSDictionary *roomsInfo in hotelRoomNumber) {
               NSNumber *roomNumber = [roomsInfo objectForKey:@"number"];
+              NSNumber *roomBeds = [roomsInfo objectForKey:@"beds"];
+              NSNumber *roomsRate = [roomsInfo objectForKey:@"rate"];
               
               Room *room = [NSEntityDescription insertNewObjectForEntityForName:@"Room" inManagedObjectContext:self.managedObjectContext];
               room.number = roomNumber;
+              room.beds = roomBeds;
+              room.rate = roomsRate;
               room.hotel = hotel;
               NSLog(@"%@",roomNumber);
             }
