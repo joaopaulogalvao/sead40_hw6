@@ -119,6 +119,9 @@
   reservation.endDate = self.selectedConfirmEndDate;
   reservation.room = self.selectedRoom;
   
+  NSError *saveError;
+  [appDelegate.managedObjectContext save:&saveError];
+  
   NSLog(@"Reservation Confirmed - Starting on: %@", self.selectedConfirmStartDate);
   NSLog(@"Reservation Confirmed - Ending on: %@", self.selectedConfirmEndDate);
   NSLog(@"Reservation Confirmed - Room: %@",self.selectedRoom);

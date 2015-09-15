@@ -21,7 +21,7 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 @property(strong, nonatomic) UITableView *tableViewReserveYourRoom;
 @property(strong,nonatomic) NSArray *hotelsArray;
 @property(strong,nonatomic) NSArray *roomsArray;
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
 //@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
@@ -63,25 +63,25 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
   self.tableViewReserveYourRoom.delegate = self;
   self.tableViewReserveYourRoom.dataSource = self;
   
-  NSDate *fromDate = self.selectedStartDate;
-  NSDate *toDate = self.selectedEndDate;
+//  NSDate *fromDate = self.selectedStartDate;
+//  NSDate *toDate = self.selectedEndDate;
   
   [self.tableViewReserveYourRoom registerClass:[ReserveYourRoomTableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
 
-  [self fetchAvailableRoomsForFromDate:fromDate toDate:toDate];
+  //[self fetchAvailableRoomsForFromDate:fromDate toDate:toDate];
   
   AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
 //
-  NSFetchRequest *fetchRequestHotel = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-  NSFetchRequest *fetchRequestRoom = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-//
-  
+//  NSFetchRequest *fetchRequestHotel = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+//  NSFetchRequest *fetchRequestRoom = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+////
+//  
   NSError *fetchError;
-  
-  self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestHotel error:&fetchError];
-  self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
-  
-  NSLog(@"Hotels array: %lu",(unsigned long)self.hotelsArray.count);
+//  
+//  self.hotelsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestHotel error:&fetchError];
+//  self.roomsArray = [appDelegate.managedObjectContext executeFetchRequest:fetchRequestRoom error:&fetchError];
+//  
+//  NSLog(@"Hotels array: %lu",(unsigned long)self.hotelsArray.count);
   //[self fetchAvailableRoomsForFromDate:startDate toDate:endDate];
   
  [self.fetchedResultsController performFetch:&fetchError];
@@ -185,6 +185,8 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
   if (_fetchedResultsController == nil) {
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
+    //[appDelegate.managedObjectContext reset];
     
     NSFetchRequest *fetchRequestHotel = [[NSFetchRequest alloc]init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Room" inManagedObjectContext:appDelegate.managedObjectContext];
@@ -299,36 +301,7 @@ static NSString *const kMyFetchedResultsControllerCacheName = @"RootCache";
 
 #pragma mark - Rooms Availability
 
--(NSArray *)fetchAvailableRoomsForFromDate:(NSDate*)fromDate toDate:(NSDate *)toDate {
-  
-  AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-  
-  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-  
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@",toDate,fromDate];
-  request.predicate = predicate;
-  NSError *fetchError;
-  NSArray *results = [appDelegate.managedObjectContext executeFetchRequest:request error:&fetchError];
-  
-  NSMutableArray *badRooms = [[NSMutableArray alloc] init];
-  for (Reservation *reservation in results) {
-    [badRooms addObject:reservation.room];
-  }
-  
-  NSFetchRequest *finalRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-  NSPredicate *finalPredicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", badRooms];
-  finalRequest.predicate = finalPredicate;
-  
-  NSError *finalError;
-  
-  NSArray *finalResults = [appDelegate.managedObjectContext executeFetchRequest:finalRequest error:&finalError];
-  
-  if (finalError) {
-    return nil;
-  }
-  return finalResults;
-  
-}
+
 
 
 /*
